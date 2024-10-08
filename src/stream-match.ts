@@ -9,14 +9,15 @@ export const streamMatchMessage = z
       kind: z.literal("[host]:initial-params"),
       userId: z.string().uuid("unique userId"),
       sessionId: z.string().describe("unique for each game session"),
-      dropTime: z
+      gameDurationInSeconds: z
         .number()
         .nonnegative()
         .int()
         .describe("drop time unit second"),
-      level: z.number().nonnegative().int().describe("limit [1,2]"),
       gameParams: z
-        .object({})
+        .object({
+          level: z.number().nonnegative().int().describe("limit [1,2]"),
+        })
         .describe("to be confirmed for each game, should be provided by CIMU"),
     }),
     z.object({
