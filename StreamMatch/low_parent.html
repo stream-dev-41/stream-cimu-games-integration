@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>parent window</title>
+</head>
+<body>
+    <h1>parent window</h1>
+	<button id="sendMessage">Game Start</button>
+	<div id="msg_content"></div>
+    <iframe id="myIframe" src="index.html" width="100%" height="1600px"></iframe>
+    <script>
+        const iframe = document.getElementById('myIframe');
+		
+		const initParams ={
+			"kind": "[host]:initial-params",
+			"version": 1,
+			"userId": "1980f585-c5ef-4908-afed-e307d4bbe6d1",
+			"sessionId": "9BAmYStCkXI0PHVp1kNs",
+			"gameDurationInSeconds": 120,
+			"gameParams": {	"level": 1}
+		}
+		const startGame = {
+		"kind": "[host]:start-game",
+		"version": 1
+		}
+	
+        document.getElementById('sendMessage').onclick = function() {
+            iframe.contentWindow.postMessage(startGame, '*');
+			document.getElementById('msg_content').textContent += '|send start-game';
+        };
+		
+        window.addEventListener('message', function(event) {
+            console.log('rec iframe message:', event.data);
+			if(event.data.kind == "[game]:is-ready")
+			{
+				iframe.contentWindow.postMessage(initParams, '*');
+				document.getElementById('msg_content').textContent += 'rec is-ready|send initial-params';
+			}
+			else if(event.data.kind == "[game]:ended")
+			{
+				document.getElementById('msg_content').textContent += '|rec [game]:ended|scores:'+ event.data.scores+",pairs:"+event.data.pairs;
+			}
+        });
+    </script>
+</body>
+</html>
