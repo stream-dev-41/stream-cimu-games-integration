@@ -33,6 +33,7 @@ export const streamMatchMessage = z
       kind: z.literal("[game]:ended"),
       scores: z.number().nonnegative().int(),
       pairs: z.number().nonnegative().int(),
+      mistakes: z.number().nonnegative().int(),
     }),
   ])
   .and(
