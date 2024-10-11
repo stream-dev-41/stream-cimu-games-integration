@@ -63,7 +63,19 @@ export const streamMatchMessage = z
     }),
   );
 export type StreamMatchMessage = z.infer<typeof streamMatchMessage>;
+export const experience = z.literal("STREAM_MATCH");
+export type Experience = z.infer<typeof experience>;
 
-export const gameUrl = "https://stream.342games.com" as const;
-export const experienceName = z.literal("STREAM_MATCH");
-export type ExperienceName = z.infer<typeof experienceName>;
+export const metadata = {
+  url: "https://stream.342games.com",
+  name: "Stream Match",
+  shortDescription: "Match the pairs as fast as you can",
+
+  // will be sanitized
+  descriptionInHtml:
+    "A 3x4 board of cards will be displayed face down. Fans will have to memorize and try their best to match the hidden pairs on the board as fast as possible before the time runs out.",
+  launchInstructionInHtml:
+    "Normal mode: Each pair is accompanied with a distinct background color to aid with visual memory<br/>Hard mode: Each pair has the same background color, making it more challenging for fans",
+  scoringRulesInHtml:
+    "Fans are scored based on speed and accuracy. They get 250 Base Points for passing and 500 Bonus for making into Top 100.",
+} as const;
