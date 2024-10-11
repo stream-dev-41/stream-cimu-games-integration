@@ -64,7 +64,7 @@ export const streamMatchMessage = z
   );
 export type StreamMatchMessage = z.infer<typeof streamMatchMessage>;
 
-export const metadata = {
+export const game = {
   id: "CIMU_STREAM_MATCH",
   url: "https://stream.342games.com",
   name: "Stream Match",
