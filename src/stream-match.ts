@@ -63,10 +63,9 @@ export const streamMatchMessage = z
     }),
   );
 export type StreamMatchMessage = z.infer<typeof streamMatchMessage>;
-export const experience = z.literal("STREAM_MATCH");
-export type Experience = z.infer<typeof experience>;
 
 export const metadata = {
+  id: "CIMU_STREAM_MATCH",
   url: "https://stream.342games.com",
   name: "Stream Match",
   shortDescription: "Match the pairs as fast as you can",
