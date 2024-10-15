@@ -117,7 +117,7 @@ jobs:
       - name: Determine version bump
         id: bump
         run: |
-          BUMP=$(pnpm conventional-recommended-bump -p angular)
+          BUMP=$(pnpm dlx conventional-recommended-bump -p angular)
           echo "BUMP=$BUMP" >> $GITHUB_OUTPUT
 
       - name: Bump version
@@ -149,7 +149,7 @@ jobs:
           git add package.json
 
       - name: Generate changelog
-        run: pnpm conventional-changelog-cli -p angular -i CHANGELOG.md -s
+        run: pnpm dlx conventional-changelog-cli -p angular -i CHANGELOG.md -s
 
       - name: Commit changes
         run: |
