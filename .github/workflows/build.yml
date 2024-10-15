@@ -114,7 +114,7 @@ jobs:
       - name: Determine version bump
         id: bump
         run: |
-          BUMP=$(pnpm bump)
+          BUMP=$(pnpm bump | tail -n1)
           echo "BUMP=$BUMP" >> $GITHUB_OUTPUT
 
       - name: Bump version
