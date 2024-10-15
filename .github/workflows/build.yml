@@ -114,7 +114,7 @@ jobs:
       - name: Determine version bump
         id: bump
         run: |
-          BUMP=$(pnpm dlx conventional-recommended-bump -p angular)
+          BUMP=$(pnpm bump)
           echo "BUMP=$BUMP" >> $GITHUB_OUTPUT
 
       - name: Bump version
