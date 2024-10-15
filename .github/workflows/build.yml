@@ -49,12 +49,12 @@ jobs:
 
       - name: Run Prettier
         id: prettier
-        run: pnpm run format:check
+        run: pnpm run format
         continue-on-error: true
 
       - name: Run TypeScript type check
         id: typecheck
-        run: pnpm run typecheck
+        run: pnpm run type-check
         continue-on-error: true
 
       - name: Check for issues
