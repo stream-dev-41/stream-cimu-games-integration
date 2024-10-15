@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "eslint src/",
     "type-check": "tsc --noEmit",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json,yaml}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,yaml}\"",
+    "bump": "pnpm conventional-recommended-bump -p angular"
   },
   "exports": {
     "./common": "./src/common.ts",
