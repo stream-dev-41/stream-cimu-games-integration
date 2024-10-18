@@ -1,3 +1,13 @@
+## [0.1.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.0...v0.1.1) (2024-10-18)
+
+
+### Bug Fixes
+
+* rename stream match to card dash ([efb5db8](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/efb5db8bdacfd3fac231c0e54ff56dda1b7f3a68))
+* try esm,cjs ([5f50d06](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/5f50d0624fe7db6dde46550bbbd90a634a7c27cc))
+
+
+
 # 0.1.0 (2024-10-15)
 
 
