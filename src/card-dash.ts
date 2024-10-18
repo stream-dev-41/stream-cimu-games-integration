@@ -13,7 +13,7 @@ export const gameParams = z
   .describe("to be confirmed for each game, should be provided by CIMU");
 export type GameParams = z.infer<typeof gameParams>;
 
-export const streamMatchMessage = z
+export const message = z
   .discriminatedUnion("kind", [
     z.object({
       kind: z.literal("[game]:is-ready"),
@@ -62,13 +62,14 @@ export const streamMatchMessage = z
         ),
     }),
   );
-export type StreamMatchMessage = z.infer<typeof streamMatchMessage>;
+export type Message = z.infer<typeof message>;
 
 export const game = {
-  id: "CIMU_STREAM_MATCH",
+  id: "CIMU_CARD_DASH",
   url: "https://stream.342games.com",
-  name: "Stream Match",
+  name: "Card Dash",
   shortDescription: "Match the pairs as fast as you can",
+  message,
 
   // will be sanitized
   descriptionInHtml:
