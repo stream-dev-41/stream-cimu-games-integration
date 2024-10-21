@@ -148,11 +148,15 @@ jobs:
       - name: Generate changelog
         run: pnpm dlx conventional-changelog-cli -p angular -i CHANGELOG.md -s
 
+      - name: Build code
+        run: pnpm run build
+
       - name: Commit changes
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add CHANGELOG.md
+          git add dist
           git commit -m "chore(release): ${{ steps.version.outputs.NEW_TAG }}"
           git tag -a ${{ steps.version.outputs.NEW_TAG }} -m "Release ${{ steps.version.outputs.NEW_TAG }}"
 
