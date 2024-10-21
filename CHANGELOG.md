@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.1...v0.1.2) (2024-10-21)
+
+
+### Bug Fixes
+
+* add build step and dist folder before committing ([7c51f8a](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/7c51f8a88665d6d96e2a0947d3132378ddd6a7ef))
+
+
+
 ## [0.1.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.0...v0.1.1) (2024-10-18)
 
 
