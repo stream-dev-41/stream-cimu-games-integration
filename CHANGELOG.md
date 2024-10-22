@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.2...v0.1.3) (2024-10-22)
+
+
+### Bug Fixes
+
+* add initialised event and some describe text ([90ee884](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/90ee884ccf71bc6df099c96de82eca2d80616a5a))
+
+
+
 ## [0.1.2](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.1...v0.1.2) (2024-10-21)
 
 
