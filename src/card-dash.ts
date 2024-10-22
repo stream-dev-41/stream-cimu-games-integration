@@ -16,10 +16,16 @@ export type GameParams = z.infer<typeof gameParams>;
 export const message = z
   .discriminatedUnion("kind", [
     z.object({
-      kind: z.literal("[game]:is-ready"),
+      kind: z
+        .literal("[game]:initialised")
+        .describe(
+          "Should be the first event in the sequence, tells Stream when to send initial params",
+        ),
     }),
     z.object({
-      kind: z.literal("[host]:initial-params"),
+      kind: z
+        .literal("[host]:initial-params")
+        .describe("Setup game with game params, after initialised"),
       userId: z.string().uuid("unique userId"),
       sessionId: z.string().describe("unique for each game session"),
       gameDurationInSeconds: z
@@ -30,7 +36,18 @@ export const message = z
       gameParams,
     }),
     z.object({
-      kind: z.literal("[host]:start-game"),
+      kind: z
+        .literal("[game]:is-ready")
+        .describe(
+          "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play",
+        ),
+    }),
+    z.object({
+      kind: z
+        .literal("[host]:start-game")
+        .describe(
+          "Start the game immediately, there should be no delay time after this event is sent to let the players play the game",
+        ),
       timeLeftInSeconds: z
         .number()
         .nonnegative()
@@ -40,7 +57,11 @@ export const message = z
         ),
     }),
     z.object({
-      kind: z.literal("[game]:ended"),
+      kind: z
+        .literal("[game]:ended")
+        .describe(
+          "Game time is up or the player finishes early, then this event is sent",
+        ),
       scores: z.number().nonnegative().int(),
       pairs: z.number().nonnegative().int(),
       mistakes: z.number().nonnegative().int(),
