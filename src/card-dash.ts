@@ -17,7 +17,7 @@ export const message = z
   .discriminatedUnion("kind", [
     z.object({
       kind: z
-        .literal("[game]:initialised")
+        .literal("[game]:initialized")
         .describe(
           "Should be the first event in the sequence, tells Stream when to send initial params",
         ),

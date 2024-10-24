@@ -8,7 +8,7 @@ var gameParams = z.object({
 }).describe("to be confirmed for each game, should be provided by CIMU");
 var message = z.discriminatedUnion("kind", [
   z.object({
-    kind: z.literal("[game]:initialised").describe(
+    kind: z.literal("[game]:initialized").describe(
       "Should be the first event in the sequence, tells Stream when to send initial params"
     )
   }),

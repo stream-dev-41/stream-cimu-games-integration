@@ -37,7 +37,7 @@ var gameParams = import_zod.z.object({
 }).describe("to be confirmed for each game, should be provided by CIMU");
 var message = import_zod.z.discriminatedUnion("kind", [
   import_zod.z.object({
-    kind: import_zod.z.literal("[game]:initialised").describe(
+    kind: import_zod.z.literal("[game]:initialized").describe(
       "Should be the first event in the sequence, tells Stream when to send initial params"
     )
   }),

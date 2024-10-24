@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.3...v0.1.4) (2024-10-23)
+
+
+### Bug Fixes
+
+* change initialised to initialized ([5970530](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/5970530a1ef34de245fe61a7b393ec5c3083c574))
+
+
+
 ## [0.1.3](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.2...v0.1.3) (2024-10-22)
 
 

@@ -12,11 +12,11 @@ declare const gameParams: z.ZodObject<{
 }>;
 type GameParams = z.infer<typeof gameParams>;
 declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
-    kind: z.ZodLiteral<"[game]:initialised">;
+    kind: z.ZodLiteral<"[game]:initialized">;
 }, "strip", z.ZodTypeAny, {
-    kind: "[game]:initialised";
+    kind: "[game]:initialized";
 }, {
-    kind: "[game]:initialised";
+    kind: "[game]:initialized";
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[host]:initial-params">;
     userId: z.ZodString;
@@ -92,11 +92,11 @@ declare const game: {
     readonly name: "Card Dash";
     readonly shortDescription: "Match the pairs as fast as you can";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
-        kind: z.ZodLiteral<"[game]:initialised">;
+        kind: z.ZodLiteral<"[game]:initialized">;
     }, "strip", z.ZodTypeAny, {
-        kind: "[game]:initialised";
+        kind: "[game]:initialized";
     }, {
-        kind: "[game]:initialised";
+        kind: "[game]:initialized";
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[host]:initial-params">;
         userId: z.ZodString;
