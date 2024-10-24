@@ -1,7 +1,19 @@
+var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
 // src/common.ts
-import { z as z2 } from "zod";
+import { z as z3 } from "zod";
 
 // src/card-dash.ts
+var card_dash_exports = {};
+__export(card_dash_exports, {
+  game: () => game,
+  gameParams: () => gameParams,
+  message: () => message
+});
 import { z } from "zod";
 var gameParams = z.object({
   level: z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
@@ -62,14 +74,81 @@ var game = {
   scoringRulesInHtml: "Fans are scored based on speed and accuracy. They get 250 Base Points for passing and 500 Bonus for making into Top 100."
 };
 
+// src/mathcraft.ts
+var mathcraft_exports = {};
+__export(mathcraft_exports, {
+  game: () => game2,
+  gameParams: () => gameParams2,
+  message: () => message2
+});
+import { z as z2 } from "zod";
+var gameParams2 = z2.object({
+  level: z2.number().nonnegative().int().min(1).max(3).describe("game difficulty")
+}).describe("to be confirmed for each game, should be provided by CIMU");
+var message2 = z2.discriminatedUnion("kind", [
+  z2.object({
+    kind: z2.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  z2.object({
+    kind: z2.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z2.string().uuid("unique userId"),
+    sessionId: z2.string().describe("unique for each game session"),
+    gameDurationInSeconds: z2.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams2
+  }),
+  z2.object({
+    kind: z2.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  z2.object({
+    kind: z2.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: z2.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  z2.object({
+    kind: z2.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: z2.number().nonnegative().int(),
+    correctAnswers: z2.number().nonnegative().int().describe("The number of questions answered correctly in the game."),
+    mistakes: z2.number().nonnegative().int(),
+    elapsedTimeInSeconds: z2.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
+  })
+]).and(
+  z2.object({
+    version: z2.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game2 = {
+  id: "CIMU_MATHCRAFT",
+  url: "https://stream-math.342games.com/",
+  name: "Mathcraft",
+  shortDescription: "TBU",
+  message: message2,
+  // will be sanitized
+  descriptionInHtml: "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-3 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
+  launchInstructionInHtml: "Select the duration of the StreamDrop and it\u2019s difficulty level.",
+  scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
+};
+
 // src/common.ts
-var thirdPartyExperience = z2.enum([
-  game.id
+var thirdPartyExperience = z3.enum([
+  game.id,
+  game2.id
   // add more games here
 ]);
 export {
-  game,
-  gameParams,
-  message,
+  card_dash_exports as cardDash,
+  mathcraft_exports as mathCraft,
   thirdPartyExperience
 };

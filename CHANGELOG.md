@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.2.0...v0.2.1) (2024-10-24)
+
+
+### Bug Fixes
+
+* restructure a bit ([8f9d0ce](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/8f9d0ce23f8c957b09200906622578af59950cf9))
+
+
+
 # [0.2.0](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.4...v0.2.0) (2024-10-24)
 
 
