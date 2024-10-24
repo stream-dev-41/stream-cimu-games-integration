@@ -7,11 +7,11 @@ export const gameParams = z
       .nonnegative()
       .int()
       .min(1)
-      .max(2)
+      .max(3)
       .describe("game difficulty"),
   })
   .describe("to be confirmed for each game, should be provided by CIMU");
-export type CardDashGameParams = z.infer<typeof gameParams>;
+export type MathcraftGameParams = z.infer<typeof gameParams>;
 
 export const message = z
   .discriminatedUnion("kind", [
@@ -63,7 +63,11 @@ export const message = z
           "Game time is up or the player finishes early, then this event is sent",
         ),
       scores: z.number().nonnegative().int(),
-      pairs: z.number().nonnegative().int(),
+      correctAnswers: z
+        .number()
+        .nonnegative()
+        .int()
+        .describe("The number of questions answered correctly in the game."),
       mistakes: z.number().nonnegative().int(),
       elapsedTimeInSeconds: z
         .number()
@@ -83,20 +87,20 @@ export const message = z
         ),
     }),
   );
-export type CardDashMessage = z.infer<typeof message>;
+export type MathcraftMessage = z.infer<typeof message>;
 
 export const game = {
-  id: "CIMU_CARD_DASH",
-  url: "https://stream.342games.com",
-  name: "Card Dash",
-  shortDescription: "Match the pairs as fast as you can",
+  id: "CIMU_MATHCRAFT",
+  url: "https://stream-math.342games.com/",
+  name: "Mathcraft",
+  shortDescription: "TBU",
   message,
 
   // will be sanitized
   descriptionInHtml:
-    "A 3x4 board of cards will be displayed face down. Fans will have to memorize and try their best to match the hidden pairs on the board as fast as possible before the time runs out.",
+    "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-3 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
   launchInstructionInHtml:
-    "Normal mode: Each pair is accompanied with a distinct background color to aid with visual memory<br/>Hard mode: Each pair has the same background color, making it more challenging for fans",
+    "Select the duration of the StreamDrop and it’s difficulty level.",
   scoringRulesInHtml:
-    "Fans are scored based on speed and accuracy. They get 250 Base Points for passing and 500 Bonus for making into Top 100.",
+    "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100.",
 } as const;
