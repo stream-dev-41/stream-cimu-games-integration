@@ -11,7 +11,7 @@ export const gameParams = z
       .describe("game difficulty"),
   })
   .describe("to be confirmed for each game, should be provided by CIMU");
-export type GameParams = z.infer<typeof gameParams>;
+export type CardDashGameParams = z.infer<typeof gameParams>;
 
 export const message = z
   .discriminatedUnion("kind", [
@@ -83,7 +83,7 @@ export const message = z
         ),
     }),
   );
-export type Message = z.infer<typeof message>;
+export type CardDashMessage = z.infer<typeof message>;
 
 export const game = {
   id: "CIMU_CARD_DASH",
