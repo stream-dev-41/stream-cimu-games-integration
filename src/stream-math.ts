@@ -16,6 +16,9 @@ export type GameParams = z.infer<typeof gameParams>;
 export const streamMathMessage = z
   .discriminatedUnion("kind", [
     z.object({
+      kind: z.literal("[game]:initialized"),
+    }),
+    z.object({
       kind: z.literal("[game]:is-ready"),
     }),
     z.object({
