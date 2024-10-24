@@ -1,3 +1,18 @@
+# [0.2.0](https://github.com/leehong0704/stream-cimu-games-integration/compare/v0.1.0...v0.2.0) (2024-10-24)
+
+
+### Bug Fixes
+
+* change initialised to initialized ([5970530](https://github.com/leehong0704/stream-cimu-games-integration/commit/5970530a1ef34de245fe61a7b393ec5c3083c574))
+* restructure a bit ([8f9d0ce](https://github.com/leehong0704/stream-cimu-games-integration/commit/8f9d0ce23f8c957b09200906622578af59950cf9))
+
+
+### Features
+
+* add mathcraft schema ([f7fbf7d](https://github.com/leehong0704/stream-cimu-games-integration/commit/f7fbf7d4b38a02ed66090a4bf4eba2d336aaf6b9))
+
+
+
 ## [0.2.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.2.0...v0.2.1) (2024-10-24)
 
 
