@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.4...v0.2.0) (2024-10-24)
+
+
+### Features
+
+* add mathcraft schema ([f7fbf7d](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/f7fbf7d4b38a02ed66090a4bf4eba2d336aaf6b9))
+
+
+
 ## [0.1.4](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.1.3...v0.1.4) (2024-10-23)
 
 
