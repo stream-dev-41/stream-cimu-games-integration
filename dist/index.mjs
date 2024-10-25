@@ -17,7 +17,7 @@ __export(card_dash_exports, {
 import { z } from "zod";
 var gameParams = z.object({
   level: z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
-}).describe("to be confirmed for each game, should be provided by CIMU");
+});
 var message = z.discriminatedUnion("kind", [
   z.object({
     kind: z.literal("[game]:initialized").describe(
@@ -84,7 +84,7 @@ __export(mathcraft_exports, {
 import { z as z2 } from "zod";
 var gameParams2 = z2.object({
   level: z2.number().nonnegative().int().min(1).max(3).describe("game difficulty")
-}).describe("to be confirmed for each game, should be provided by CIMU");
+});
 var message2 = z2.discriminatedUnion("kind", [
   z2.object({
     kind: z2.literal("[game]:initialized").describe(
@@ -147,8 +147,67 @@ var thirdPartyExperience = z3.enum([
   game2.id
   // add more games here
 ]);
+
+// src/surge-run.ts
+var surge_run_exports = {};
+__export(surge_run_exports, {
+  game: () => game3,
+  gameParams: () => gameParams3,
+  message: () => message3
+});
+import { z as z4 } from "zod";
+var gameParams3 = z4.object({
+  bestScores: z4.number().int().min(0).describe("used to display user's personal best score")
+});
+var message3 = z4.discriminatedUnion("kind", [
+  z4.object({
+    kind: z4.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  z4.object({
+    kind: z4.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z4.string().uuid("unique userId"),
+    sessionId: z4.string().describe("unique for each game session"),
+    gameParams: gameParams3
+  }),
+  z4.object({
+    kind: z4.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  z4.object({
+    kind: z4.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    )
+  }),
+  z4.object({
+    kind: z4.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: z4.number().nonnegative().int()
+  })
+]).and(
+  z4.object({
+    version: z4.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game3 = {
+  id: "CIMU_SURGE_RUN",
+  url: "https://stream-three.342games.com",
+  name: "Surge Run",
+  shortDescription: "TBU",
+  message: message3,
+  // will be sanitized
+  descriptionInHtml: "TBU",
+  launchInstructionInHtml: "TBU",
+  scoringRulesInHtml: "TBU"
+};
 export {
   card_dash_exports as cardDash,
   mathcraft_exports as mathCraft,
+  surge_run_exports as surgeRun,
   thirdPartyExperience
 };

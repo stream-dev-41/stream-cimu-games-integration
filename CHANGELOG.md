@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.2.1...v0.3.0) (2024-10-25)
+
+
+### Features
+
+* add schema for surge run ([94f74a5](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/94f74a53c7b2105e3f66008db3a29b28f063bd8a))
+
+
+
 ## [0.2.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.2.0...v0.2.1) (2024-10-24)
 
 

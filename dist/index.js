@@ -22,6 +22,7 @@ var src_exports = {};
 __export(src_exports, {
   cardDash: () => card_dash_exports,
   mathCraft: () => mathcraft_exports,
+  surgeRun: () => surge_run_exports,
   thirdPartyExperience: () => thirdPartyExperience
 });
 module.exports = __toCommonJS(src_exports);
@@ -39,7 +40,7 @@ __export(card_dash_exports, {
 var import_zod = require("zod");
 var gameParams = import_zod.z.object({
   level: import_zod.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
-}).describe("to be confirmed for each game, should be provided by CIMU");
+});
 var message = import_zod.z.discriminatedUnion("kind", [
   import_zod.z.object({
     kind: import_zod.z.literal("[game]:initialized").describe(
@@ -106,7 +107,7 @@ __export(mathcraft_exports, {
 var import_zod2 = require("zod");
 var gameParams2 = import_zod2.z.object({
   level: import_zod2.z.number().nonnegative().int().min(1).max(3).describe("game difficulty")
-}).describe("to be confirmed for each game, should be provided by CIMU");
+});
 var message2 = import_zod2.z.discriminatedUnion("kind", [
   import_zod2.z.object({
     kind: import_zod2.z.literal("[game]:initialized").describe(
@@ -169,9 +170,68 @@ var thirdPartyExperience = import_zod3.z.enum([
   game2.id
   // add more games here
 ]);
+
+// src/surge-run.ts
+var surge_run_exports = {};
+__export(surge_run_exports, {
+  game: () => game3,
+  gameParams: () => gameParams3,
+  message: () => message3
+});
+var import_zod4 = require("zod");
+var gameParams3 = import_zod4.z.object({
+  bestScores: import_zod4.z.number().int().min(0).describe("used to display user's personal best score")
+});
+var message3 = import_zod4.z.discriminatedUnion("kind", [
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: import_zod4.z.string().uuid("unique userId"),
+    sessionId: import_zod4.z.string().describe("unique for each game session"),
+    gameParams: gameParams3
+  }),
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    )
+  }),
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: import_zod4.z.number().nonnegative().int()
+  })
+]).and(
+  import_zod4.z.object({
+    version: import_zod4.z.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game3 = {
+  id: "CIMU_SURGE_RUN",
+  url: "https://stream-three.342games.com",
+  name: "Surge Run",
+  shortDescription: "TBU",
+  message: message3,
+  // will be sanitized
+  descriptionInHtml: "TBU",
+  launchInstructionInHtml: "TBU",
+  scoringRulesInHtml: "TBU"
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   cardDash,
   mathCraft,
+  surgeRun,
   thirdPartyExperience
 });
