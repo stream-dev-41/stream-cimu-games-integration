@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.1...v0.3.2) (2024-10-25)
+
+
+### Bug Fixes
+
+* temporarily remove mathcraft ([8fce414](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/8fce4140af3686ce188ab44ceddcda67f639dcda))
+
+
+
 ## [0.3.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.0...v0.3.1) (2024-10-25)
 
 

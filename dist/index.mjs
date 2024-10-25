@@ -5,7 +5,7 @@ var __export = (target, all) => {
 };
 
 // src/common.ts
-import { z as z4 } from "zod";
+import { z as z3 } from "zod";
 
 // src/card-dash.ts
 var card_dash_exports = {};
@@ -74,16 +74,16 @@ var game = {
   scoringRulesInHtml: "Fans are scored based on speed and accuracy. They get 250 Base Points for passing and 500 Bonus for making into Top 100."
 };
 
-// src/mathcraft.ts
-var mathcraft_exports = {};
-__export(mathcraft_exports, {
+// src/surge-run.ts
+var surge_run_exports = {};
+__export(surge_run_exports, {
   game: () => game2,
   gameParams: () => gameParams2,
   message: () => message2
 });
 import { z as z2 } from "zod";
 var gameParams2 = z2.object({
-  level: z2.number().nonnegative().int().min(1).max(3).describe("game difficulty")
+  bestScores: z2.number().int().min(0).describe("used to display user's personal best score")
 });
 var message2 = z2.discriminatedUnion("kind", [
   z2.object({
@@ -95,7 +95,6 @@ var message2 = z2.discriminatedUnion("kind", [
     kind: z2.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
     userId: z2.string().uuid("unique userId"),
     sessionId: z2.string().describe("unique for each game session"),
-    gameDurationInSeconds: z2.number().nonnegative().int().describe("the duration of the game in seconds"),
     gameParams: gameParams2
   }),
   z2.object({
@@ -106,21 +105,13 @@ var message2 = z2.discriminatedUnion("kind", [
   z2.object({
     kind: z2.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: z2.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
     )
   }),
   z2.object({
     kind: z2.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: z2.number().nonnegative().int(),
-    correctAnswers: z2.number().nonnegative().int().describe("The number of questions answered correctly in the game."),
-    mistakes: z2.number().nonnegative().int(),
-    elapsedTimeInSeconds: z2.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
+    scores: z2.number().nonnegative().int()
   })
 ]).and(
   z2.object({
@@ -130,69 +121,11 @@ var message2 = z2.discriminatedUnion("kind", [
   })
 );
 var game2 = {
-  id: "CIMU_MATHCRAFT",
-  url: "https://stream-math.342games.com/",
-  name: "Mathcraft",
-  shortDescription: "TBU",
-  message: message2,
-  // will be sanitized
-  descriptionInHtml: "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-3 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
-  launchInstructionInHtml: "Select the duration of the StreamDrop and it\u2019s difficulty level.",
-  scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
-};
-
-// src/surge-run.ts
-var surge_run_exports = {};
-__export(surge_run_exports, {
-  game: () => game3,
-  gameParams: () => gameParams3,
-  message: () => message3
-});
-import { z as z3 } from "zod";
-var gameParams3 = z3.object({
-  bestScores: z3.number().int().min(0).describe("used to display user's personal best score")
-});
-var message3 = z3.discriminatedUnion("kind", [
-  z3.object({
-    kind: z3.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  z3.object({
-    kind: z3.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: z3.string().uuid("unique userId"),
-    sessionId: z3.string().describe("unique for each game session"),
-    gameParams: gameParams3
-  }),
-  z3.object({
-    kind: z3.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  z3.object({
-    kind: z3.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    )
-  }),
-  z3.object({
-    kind: z3.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    scores: z3.number().nonnegative().int()
-  })
-]).and(
-  z3.object({
-    version: z3.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
-  })
-);
-var game3 = {
   id: "CIMU_SURGE_RUN",
   url: "https://stream-three.342games.com",
   name: "Surge Run",
   shortDescription: "TBU",
-  message: message3,
+  message: message2,
   // will be sanitized
   descriptionInHtml: "TBU",
   launchInstructionInHtml: "TBU",
@@ -200,12 +133,78 @@ var game3 = {
 };
 
 // src/common.ts
-var thirdPartyExperience = z4.enum([
+var thirdPartyExperience = z3.enum([
   game.id,
-  game2.id,
-  game3.id
+  game2.id
   // add more games here
 ]);
+
+// src/mathcraft.ts
+var mathcraft_exports = {};
+__export(mathcraft_exports, {
+  game: () => game3,
+  gameParams: () => gameParams3,
+  message: () => message3
+});
+import { z as z4 } from "zod";
+var gameParams3 = z4.object({
+  level: z4.number().nonnegative().int().min(1).max(3).describe("game difficulty")
+});
+var message3 = z4.discriminatedUnion("kind", [
+  z4.object({
+    kind: z4.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  z4.object({
+    kind: z4.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z4.string().uuid("unique userId"),
+    sessionId: z4.string().describe("unique for each game session"),
+    gameDurationInSeconds: z4.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams3
+  }),
+  z4.object({
+    kind: z4.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  z4.object({
+    kind: z4.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: z4.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  z4.object({
+    kind: z4.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: z4.number().nonnegative().int(),
+    correctAnswers: z4.number().nonnegative().int().describe("The number of questions answered correctly in the game."),
+    mistakes: z4.number().nonnegative().int(),
+    elapsedTimeInSeconds: z4.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
+  })
+]).and(
+  z4.object({
+    version: z4.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game3 = {
+  id: "CIMU_MATHCRAFT",
+  url: "https://stream-math.342games.com/",
+  name: "Mathcraft",
+  shortDescription: "TBU",
+  message: message3,
+  // will be sanitized
+  descriptionInHtml: "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-3 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
+  launchInstructionInHtml: "Select the duration of the StreamDrop and it\u2019s difficulty level.",
+  scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
+};
 export {
   card_dash_exports as cardDash,
   mathcraft_exports as mathCraft,
