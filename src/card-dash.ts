@@ -1,16 +1,14 @@
 import { z } from "zod";
 
-export const gameParams = z
-  .object({
-    level: z
-      .number()
-      .nonnegative()
-      .int()
-      .min(1)
-      .max(2)
-      .describe("game difficulty"),
-  })
-  .describe("to be confirmed for each game, should be provided by CIMU");
+export const gameParams = z.object({
+  level: z
+    .number()
+    .nonnegative()
+    .int()
+    .min(1)
+    .max(2)
+    .describe("game difficulty"),
+});
 export type CardDashGameParams = z.infer<typeof gameParams>;
 
 export const message = z
