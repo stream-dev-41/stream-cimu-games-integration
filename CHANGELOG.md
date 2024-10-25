@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.0...v0.3.1) (2024-10-25)
+
+
+### Bug Fixes
+
+* include surge run in third party enum ([fbac71c](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/fbac71c0c52aee1d3f576909ad36948ef300f0d0))
+
+
+
 # [0.3.0](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.2.1...v0.3.0) (2024-10-25)
 
 
