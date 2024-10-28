@@ -12,10 +12,16 @@ export const streamRunningMessage_1 = z
       kind: z.literal("[game]:initialized"),
     }),
     z.object({
+      kind: z.literal("[game]:is-ready"),
+    }),
+    z.object({
       kind: z.literal("[host]:initial-params"),
       userId: z.string().uuid("unique userId"),
       sessionId: z.string().describe("unique for each game session"),
       gameParams,
+    }),
+    z.object({
+      kind: z.literal("[host]:start-game"),
     }),
     z.object({
       kind: z.literal("[game]:ended"),
