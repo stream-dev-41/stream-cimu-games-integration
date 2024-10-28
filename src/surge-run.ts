@@ -62,7 +62,7 @@ export type SurgeRunMessage = z.infer<typeof message>;
 
 export const game = {
   id: "CIMU_SURGE_RUN",
-  url: "https://stream-three.342games.com",
+  url: "https://stream-run.342games.com",
   name: "Surge Run",
   shortDescription: "TBU",
   message,
