@@ -145,7 +145,7 @@ var message2 = import_zod2.z.discriminatedUnion("kind", [
 );
 var game2 = {
   id: "CIMU_SURGE_RUN",
-  url: "https://stream-three.342games.com",
+  url: "https://stream-run.342games.com",
   name: "Surge Run",
   shortDescription: "TBU",
   message: message2,

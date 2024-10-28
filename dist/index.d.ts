@@ -419,7 +419,7 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
 type SurgeRunMessage = z.infer<typeof message>;
 declare const game: {
     readonly id: "CIMU_SURGE_RUN";
-    readonly url: "https://stream-three.342games.com";
+    readonly url: "https://stream-run.342games.com";
     readonly name: "Surge Run";
     readonly shortDescription: "TBU";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{

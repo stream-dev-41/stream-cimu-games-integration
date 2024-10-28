@@ -1,3 +1,12 @@
+## [0.3.3](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.2...v0.3.3) (2024-10-28)
+
+
+### Bug Fixes
+
+* use production url for stream run ([5773acc](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/5773acccee6ea0bd233f1816a8988df43c27a5e3))
+
+
+
 ## [0.3.2](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.1...v0.3.2) (2024-10-25)
 
 
