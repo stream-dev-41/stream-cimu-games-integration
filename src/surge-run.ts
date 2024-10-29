@@ -6,6 +6,7 @@ export const gameParams = z.object({
     .int()
     .min(0)
     .describe("used to display user's personal best score"),
+  device: z.enum(["mobile", "desktop"]),
 });
 export type SurgeRunGameParams = z.infer<typeof gameParams>;
 
