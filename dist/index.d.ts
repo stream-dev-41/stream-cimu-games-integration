@@ -351,10 +351,13 @@ declare namespace mathcraft {
 
 declare const gameParams: z.ZodObject<{
     bestScores: z.ZodNumber;
+    device: z.ZodEnum<["mobile", "desktop"]>;
 }, "strip", z.ZodTypeAny, {
     bestScores: number;
+    device: "mobile" | "desktop";
 }, {
     bestScores: number;
+    device: "mobile" | "desktop";
 }>;
 type SurgeRunGameParams = z.infer<typeof gameParams>;
 declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
@@ -369,10 +372,13 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     sessionId: z.ZodString;
     gameParams: z.ZodObject<{
         bestScores: z.ZodNumber;
+        device: z.ZodEnum<["mobile", "desktop"]>;
     }, "strip", z.ZodTypeAny, {
         bestScores: number;
+        device: "mobile" | "desktop";
     }, {
         bestScores: number;
+        device: "mobile" | "desktop";
     }>;
 }, "strip", z.ZodTypeAny, {
     kind: "[host]:initial-params";
@@ -380,6 +386,7 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     sessionId: string;
     gameParams: {
         bestScores: number;
+        device: "mobile" | "desktop";
     };
 }, {
     kind: "[host]:initial-params";
@@ -387,6 +394,7 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     sessionId: string;
     gameParams: {
         bestScores: number;
+        device: "mobile" | "desktop";
     };
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[game]:is-ready">;
@@ -434,10 +442,13 @@ declare const game: {
         sessionId: z.ZodString;
         gameParams: z.ZodObject<{
             bestScores: z.ZodNumber;
+            device: z.ZodEnum<["mobile", "desktop"]>;
         }, "strip", z.ZodTypeAny, {
             bestScores: number;
+            device: "mobile" | "desktop";
         }, {
             bestScores: number;
+            device: "mobile" | "desktop";
         }>;
     }, "strip", z.ZodTypeAny, {
         kind: "[host]:initial-params";
@@ -445,6 +456,7 @@ declare const game: {
         sessionId: string;
         gameParams: {
             bestScores: number;
+            device: "mobile" | "desktop";
         };
     }, {
         kind: "[host]:initial-params";
@@ -452,6 +464,7 @@ declare const game: {
         sessionId: string;
         gameParams: {
             bestScores: number;
+            device: "mobile" | "desktop";
         };
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[game]:is-ready">;

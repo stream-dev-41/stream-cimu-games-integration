@@ -83,7 +83,8 @@ __export(surge_run_exports, {
 });
 import { z as z2 } from "zod";
 var gameParams2 = z2.object({
-  bestScores: z2.number().int().min(0).describe("used to display user's personal best score")
+  bestScores: z2.number().int().min(0).describe("used to display user's personal best score"),
+  device: z2.enum(["mobile", "desktop"])
 });
 var message2 = z2.discriminatedUnion("kind", [
   z2.object({

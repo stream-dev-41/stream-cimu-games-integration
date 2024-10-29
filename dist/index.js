@@ -106,7 +106,8 @@ __export(surge_run_exports, {
 });
 var import_zod2 = require("zod");
 var gameParams2 = import_zod2.z.object({
-  bestScores: import_zod2.z.number().int().min(0).describe("used to display user's personal best score")
+  bestScores: import_zod2.z.number().int().min(0).describe("used to display user's personal best score"),
+  device: import_zod2.z.enum(["mobile", "desktop"])
 });
 var message2 = import_zod2.z.discriminatedUnion("kind", [
   import_zod2.z.object({

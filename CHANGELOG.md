@@ -1,3 +1,12 @@
+## [0.3.4](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.3...v0.3.4) (2024-10-29)
+
+
+### Bug Fixes
+
+* add device to stream run game params ([5b76f72](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/5b76f7287b912c272759e1dad2b928d28411c336))
+
+
+
 ## [0.3.3](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.2...v0.3.3) (2024-10-28)
 
 
