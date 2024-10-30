@@ -1,3 +1,12 @@
+## [0.3.5](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.4...v0.3.5) (2024-10-30)
+
+
+### Bug Fixes
+
+* new event for stream run ([6ed0f99](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/6ed0f9978157a31fd5a7aa505956cebb0d14ec7f))
+
+
+
 ## [0.3.4](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.3...v0.3.4) (2024-10-29)
 
 

@@ -367,6 +367,12 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
 }, {
     kind: "[game]:initialized";
 }>, z.ZodObject<{
+    kind: z.ZodLiteral<"[host]:key">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[host]:key";
+}, {
+    kind: "[host]:key";
+}>, z.ZodObject<{
     kind: z.ZodLiteral<"[host]:initial-params">;
     userId: z.ZodString;
     sessionId: z.ZodString;
@@ -436,6 +442,12 @@ declare const game: {
         kind: "[game]:initialized";
     }, {
         kind: "[game]:initialized";
+    }>, z.ZodObject<{
+        kind: z.ZodLiteral<"[host]:key">;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[host]:key";
+    }, {
+        kind: "[host]:key";
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[host]:initial-params">;
         userId: z.ZodString;

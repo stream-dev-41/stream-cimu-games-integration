@@ -116,6 +116,9 @@ var message2 = import_zod2.z.discriminatedUnion("kind", [
     )
   }),
   import_zod2.z.object({
+    kind: import_zod2.z.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+  }),
+  import_zod2.z.object({
     kind: import_zod2.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
     userId: import_zod2.z.string().uuid("unique userId"),
     sessionId: import_zod2.z.string().describe("unique for each game session"),

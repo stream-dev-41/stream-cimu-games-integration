@@ -93,6 +93,9 @@ var message2 = z2.discriminatedUnion("kind", [
     )
   }),
   z2.object({
+    kind: z2.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+  }),
+  z2.object({
     kind: z2.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
     userId: z2.string().uuid("unique userId"),
     sessionId: z2.string().describe("unique for each game session"),
