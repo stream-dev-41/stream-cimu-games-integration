@@ -106,7 +106,8 @@ __export(surge_run_exports, {
 });
 var import_zod2 = require("zod");
 var gameParams2 = import_zod2.z.object({
-  bestScores: import_zod2.z.number().int().min(0).describe("used to display user's personal best score")
+  bestScores: import_zod2.z.number().int().min(0).describe("used to display user's personal best score"),
+  device: import_zod2.z.enum(["mobile", "desktop"])
 });
 var message2 = import_zod2.z.discriminatedUnion("kind", [
   import_zod2.z.object({
@@ -145,7 +146,7 @@ var message2 = import_zod2.z.discriminatedUnion("kind", [
 );
 var game2 = {
   id: "CIMU_SURGE_RUN",
-  url: "https://stream-three.342games.com",
+  url: "https://stream-run.342games.com",
   name: "Surge Run",
   shortDescription: "TBU",
   message: message2,
