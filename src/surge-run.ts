@@ -21,6 +21,11 @@ export const message = z
     }),
     z.object({
       kind: z
+        .literal("[host]:key")
+        .describe("Send key event to the game, e.g. keyboard or controller"),
+    }),
+    z.object({
+      kind: z
         .literal("[host]:initial-params")
         .describe("Setup game with game params, after initialised"),
       userId: z.string().uuid("unique userId"),
