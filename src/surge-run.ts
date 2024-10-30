@@ -6,6 +6,7 @@ export const gameParams = z.object({
     .int()
     .min(0)
     .describe("used to display user's personal best score"),
+  device: z.enum(["mobile", "desktop"]),
 });
 export type SurgeRunGameParams = z.infer<typeof gameParams>;
 
@@ -62,7 +63,7 @@ export type SurgeRunMessage = z.infer<typeof message>;
 
 export const game = {
   id: "CIMU_SURGE_RUN",
-  url: "https://stream-three.342games.com",
+  url: "https://stream-run.342games.com",
   name: "Surge Run",
   shortDescription: "TBU",
   message,
