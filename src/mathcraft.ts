@@ -9,7 +9,7 @@ export const gameParams = z.object({
     .max(3)
     .describe("game difficulty"),
 });
-export type MathcraftGameParams = z.infer<typeof gameParams>;
+export type MathCraftGameParams = z.infer<typeof gameParams>;
 
 export const message = z
   .discriminatedUnion("kind", [
@@ -85,12 +85,12 @@ export const message = z
         ),
     }),
   );
-export type MathcraftMessage = z.infer<typeof message>;
+export type MathCraftMessage = z.infer<typeof message>;
 
 export const game = {
-  id: "CIMU_MATHCRAFT",
+  id: "CIMU_MATH_CRAFT",
   url: "https://stream-math.342games.com/",
-  name: "Mathcraft",
+  name: "MathCraft",
   shortDescription: "TBU",
   message,
 
