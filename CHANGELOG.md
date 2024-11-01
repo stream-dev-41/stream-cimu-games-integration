@@ -1,3 +1,12 @@
+## [0.3.6](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.5...v0.3.6) (2024-11-01)
+
+
+### Bug Fixes
+
+* rename mathcraft ([d3ca493](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/d3ca49351ba5f05b72378d0ec308f38d94a7c2bb))
+
+
+
 ## [0.3.5](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.4...v0.3.5) (2024-10-30)
 
 

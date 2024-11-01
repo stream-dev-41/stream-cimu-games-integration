@@ -183,7 +183,7 @@ declare const gameParams$1: z.ZodObject<{
 }, {
     level: number;
 }>;
-type MathcraftGameParams = z.infer<typeof gameParams$1>;
+type MathCraftGameParams = z.infer<typeof gameParams$1>;
 declare const message$1: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"[game]:initialized">;
 }, "strip", z.ZodTypeAny, {
@@ -258,11 +258,11 @@ declare const message$1: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
 }, {
     version: 1;
 }>>;
-type MathcraftMessage = z.infer<typeof message$1>;
+type MathCraftMessage = z.infer<typeof message$1>;
 declare const game$1: {
-    readonly id: "CIMU_MATHCRAFT";
+    readonly id: "CIMU_MATH_CRAFT";
     readonly url: "https://stream-math.342games.com/";
-    readonly name: "Mathcraft";
+    readonly name: "MathCraft";
     readonly shortDescription: "TBU";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
         kind: z.ZodLiteral<"[game]:initialized">;
@@ -343,10 +343,10 @@ declare const game$1: {
     readonly scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100.";
 };
 
-type mathcraft_MathcraftGameParams = MathcraftGameParams;
-type mathcraft_MathcraftMessage = MathcraftMessage;
+type mathcraft_MathCraftGameParams = MathCraftGameParams;
+type mathcraft_MathCraftMessage = MathCraftMessage;
 declare namespace mathcraft {
-  export { type mathcraft_MathcraftGameParams as MathcraftGameParams, type mathcraft_MathcraftMessage as MathcraftMessage, game$1 as game, gameParams$1 as gameParams, message$1 as message };
+  export { type mathcraft_MathCraftGameParams as MathCraftGameParams, type mathcraft_MathCraftMessage as MathCraftMessage, game$1 as game, gameParams$1 as gameParams, message$1 as message };
 }
 
 declare const gameParams: z.ZodObject<{
@@ -520,4 +520,4 @@ declare namespace surgeRun {
   export { type surgeRun_SurgeRunGameParams as SurgeRunGameParams, type surgeRun_SurgeRunMessage as SurgeRunMessage, surgeRun_game as game, surgeRun_gameParams as gameParams, surgeRun_message as message };
 }
 
-export { type CardDashGameParams, type CardDashMessage, type MathcraftGameParams, type MathcraftMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, cardDash, mathcraft as mathCraft, surgeRun, thirdPartyExperience };
+export { type CardDashGameParams, type CardDashMessage, type MathCraftGameParams, type MathCraftMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, cardDash, mathcraft as mathCraft, surgeRun, thirdPartyExperience };

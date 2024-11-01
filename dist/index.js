@@ -222,9 +222,9 @@ var message3 = import_zod4.z.discriminatedUnion("kind", [
   })
 );
 var game3 = {
-  id: "CIMU_MATHCRAFT",
+  id: "CIMU_MATH_CRAFT",
   url: "https://stream-math.342games.com/",
-  name: "Mathcraft",
+  name: "MathCraft",
   shortDescription: "TBU",
   message: message3,
   // will be sanitized
