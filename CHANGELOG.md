@@ -1,3 +1,12 @@
+## [0.3.7](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.6...v0.3.7) (2024-11-01)
+
+
+### Bug Fixes
+
+* add mathcraft exp ([0039c34](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/0039c34b736b93ab830a7b34d04f7bbdf7360625))
+
+
+
 ## [0.3.6](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.5...v0.3.6) (2024-11-01)
 
 
