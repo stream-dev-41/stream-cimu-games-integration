@@ -1,11 +1,9 @@
 import { z } from "zod";
 import { game as cardDash } from "./card-dash";
-import { game as surgeRun } from "./surge-run";
 import { game as mathCraft } from "./mathcraft";
 
 export const thirdPartyExperience = z.enum([
   cardDash.id,
-  surgeRun.id,
   mathCraft.id,
   // add more games here
 ]);
