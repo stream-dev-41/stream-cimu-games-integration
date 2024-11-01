@@ -131,7 +131,7 @@ var message2 = z2.discriminatedUnion("kind", [
 );
 var game2 = {
   id: "CIMU_MATH_CRAFT",
-  url: "https://stream-math.342games.com/",
+  url: "https://stream-math.342games.com",
   name: "MathCraft",
   shortDescription: "TBU",
   message: message2,

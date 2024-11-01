@@ -261,7 +261,7 @@ declare const message$1: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
 type MathCraftMessage = z.infer<typeof message$1>;
 declare const game$1: {
     readonly id: "CIMU_MATH_CRAFT";
-    readonly url: "https://stream-math.342games.com/";
+    readonly url: "https://stream-math.342games.com";
     readonly name: "MathCraft";
     readonly shortDescription: "TBU";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
