@@ -89,7 +89,7 @@ export type MathCraftMessage = z.infer<typeof message>;
 
 export const game = {
   id: "CIMU_MATH_CRAFT",
-  url: "https://stream-math.342games.com/",
+  url: "https://stream-math.342games.com",
   name: "MathCraft",
   shortDescription: "TBU",
   message,
