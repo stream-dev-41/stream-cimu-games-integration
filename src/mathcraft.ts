@@ -91,7 +91,7 @@ export const game = {
   id: "CIMU_MATH_CRAFT",
   url: "https://stream-math.342games.com",
   name: "MathCraft",
-  shortDescription: "TBU",
+  shortDescription: "Remove the right blocks to reach the answer",
   message,
 
   // will be sanitized
