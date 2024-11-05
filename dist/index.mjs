@@ -133,7 +133,7 @@ var game2 = {
   id: "CIMU_MATH_CRAFT",
   url: "https://stream-math.342games.com",
   name: "MathCraft",
-  shortDescription: "TBU",
+  shortDescription: "Remove the right blocks to reach the answer",
   message: message2,
   // will be sanitized
   descriptionInHtml: "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-3 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",

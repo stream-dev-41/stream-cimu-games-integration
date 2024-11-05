@@ -1,3 +1,12 @@
+## [0.3.10](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.9...v0.3.10) (2024-11-05)
+
+
+### Bug Fixes
+
+* mathcraft description ([3c05cf9](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/3c05cf9b40cf82acc2590a69d96c858fdab60a75))
+
+
+
 ## [0.3.9](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.8...v0.3.9) (2024-11-01)
 
 

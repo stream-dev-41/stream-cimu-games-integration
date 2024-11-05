@@ -263,7 +263,7 @@ declare const game$1: {
     readonly id: "CIMU_MATH_CRAFT";
     readonly url: "https://stream-math.342games.com";
     readonly name: "MathCraft";
-    readonly shortDescription: "TBU";
+    readonly shortDescription: "Remove the right blocks to reach the answer";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
         kind: z.ZodLiteral<"[game]:initialized">;
     }, "strip", z.ZodTypeAny, {
