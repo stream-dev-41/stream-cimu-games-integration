@@ -1,3 +1,7 @@
+## [0.3.1](https://github.com/leehong0704/stream-cimu-games-integration/compare/v0.3.0...v0.3.1) (2024-10-30)
+
+
+
 # [0.3.0](https://github.com/leehong0704/stream-cimu-games-integration/compare/v0.2.0...v0.3.0) (2024-10-28)
 
 
