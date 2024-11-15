@@ -8,7 +8,7 @@ export const gameParams = z.object({
     .describe("used to display user's personal best score"),
   device: z.enum(["mobile", "desktop"]),
 });
-export type StreamRunGameParams = z.infer<typeof gameParams>;
+export type MatrixRunGameParams = z.infer<typeof gameParams>;
 
 export const message = z
   .discriminatedUnion("kind", [
@@ -64,12 +64,12 @@ export const message = z
         ),
     }),
   );
-export type StreamRunMessage = z.infer<typeof message>;
+export type MatrixRunMessage = z.infer<typeof message>;
 
 export const game = {
-  id: "CIMU_STREAM_RUN",
+  id: "CIMU_MATRIX_RUN",
   url: "https://stream-run30.342games.com",
-  name: "Stream Run",
+  name: "Matrix Run",
   shortDescription: "TBU",
   message,
 
