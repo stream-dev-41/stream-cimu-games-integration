@@ -159,7 +159,7 @@ var game2 = {
   shortDescription: "Remove the right blocks to reach the answer",
   message: message2,
   // will be sanitized
-  descriptionInHtml: "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-3 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
+  descriptionInHtml: "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-2 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
   launchInstructionInHtml: "Select the duration of the StreamDrop and it\u2019s difficulty level.",
   scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
 };
