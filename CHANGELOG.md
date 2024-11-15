@@ -1,3 +1,12 @@
+## [0.4.4](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.3...v0.4.4) (2024-11-15)
+
+
+### Bug Fixes
+
+* matrix run level 1-2 ([7d3e541](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/7d3e541accf21333efe569cc91220e73b2d593cd))
+
+
+
 ## [0.4.3](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.2...v0.4.3) (2024-11-15)
 
 

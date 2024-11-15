@@ -174,7 +174,7 @@ __export(matrix_run_exports, {
 });
 var import_zod3 = require("zod");
 var gameParams3 = import_zod3.z.object({
-  level: import_zod3.z.number().nonnegative().int().min(1).max(3).describe("game difficulty")
+  level: import_zod3.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
 var message3 = import_zod3.z.discriminatedUnion("kind", [
   import_zod3.z.object({
