@@ -181,7 +181,10 @@ var message3 = z3.discriminatedUnion("kind", [
     kind: z3.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: z3.number().nonnegative().int()
+    scores: z3.number().nonnegative().int(),
+    elapsedTimeInSeconds: z3.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
   })
 ]).and(
   z3.object({

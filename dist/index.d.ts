@@ -577,12 +577,15 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[game]:ended">;
     scores: z.ZodNumber;
+    elapsedTimeInSeconds: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     kind: "[game]:ended";
     scores: number;
+    elapsedTimeInSeconds: number;
 }, {
     kind: "[game]:ended";
     scores: number;
+    elapsedTimeInSeconds: number;
 }>]>, z.ZodObject<{
     version: z.ZodLiteral<1>;
 }, "strip", z.ZodTypeAny, {
@@ -648,12 +651,15 @@ declare const game: {
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[game]:ended">;
         scores: z.ZodNumber;
+        elapsedTimeInSeconds: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         kind: "[game]:ended";
         scores: number;
+        elapsedTimeInSeconds: number;
     }, {
         kind: "[game]:ended";
         scores: number;
+        elapsedTimeInSeconds: number;
     }>]>, z.ZodObject<{
         version: z.ZodLiteral<1>;
     }, "strip", z.ZodTypeAny, {

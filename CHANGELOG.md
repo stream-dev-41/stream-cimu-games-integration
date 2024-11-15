@@ -1,3 +1,12 @@
+## [0.4.3](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.2...v0.4.3) (2024-11-15)
+
+
+### Bug Fixes
+
+* add elapsed time to matrix run ([ed2e1a2](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/ed2e1a2b803faa0408caed673c8623447e0c3795))
+
+
+
 ## [0.4.2](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.1...v0.4.2) (2024-11-15)
 
 
