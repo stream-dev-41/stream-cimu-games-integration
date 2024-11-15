@@ -1,12 +1,13 @@
 import { z } from "zod";
 
 export const gameParams = z.object({
-  bestScores: z
+  level: z
     .number()
+    .nonnegative()
     .int()
-    .min(0)
-    .describe("used to display user's personal best score"),
-  device: z.enum(["mobile", "desktop"]),
+    .min(1)
+    .max(3)
+    .describe("game difficulty"),
 });
 export type MatrixRunGameParams = z.infer<typeof gameParams>;
 
