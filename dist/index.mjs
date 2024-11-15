@@ -150,8 +150,7 @@ __export(matrix_run_exports, {
 });
 import { z as z3 } from "zod";
 var gameParams3 = z3.object({
-  bestScores: z3.number().int().min(0).describe("used to display user's personal best score"),
-  device: z3.enum(["mobile", "desktop"])
+  level: z3.number().nonnegative().int().min(1).max(3).describe("game difficulty")
 });
 var message3 = z3.discriminatedUnion("kind", [
   z3.object({

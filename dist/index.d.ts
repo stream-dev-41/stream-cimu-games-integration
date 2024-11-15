@@ -518,14 +518,11 @@ declare namespace surgeRun {
 }
 
 declare const gameParams: z.ZodObject<{
-    bestScores: z.ZodNumber;
-    device: z.ZodEnum<["mobile", "desktop"]>;
+    level: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    bestScores: number;
-    device: "mobile" | "desktop";
+    level: number;
 }, {
-    bestScores: number;
-    device: "mobile" | "desktop";
+    level: number;
 }>;
 type MatrixRunGameParams = z.infer<typeof gameParams>;
 declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
@@ -545,30 +542,25 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     userId: z.ZodString;
     sessionId: z.ZodString;
     gameParams: z.ZodObject<{
-        bestScores: z.ZodNumber;
-        device: z.ZodEnum<["mobile", "desktop"]>;
+        level: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        bestScores: number;
-        device: "mobile" | "desktop";
+        level: number;
     }, {
-        bestScores: number;
-        device: "mobile" | "desktop";
+        level: number;
     }>;
 }, "strip", z.ZodTypeAny, {
     kind: "[host]:initial-params";
     userId: string;
     sessionId: string;
     gameParams: {
-        bestScores: number;
-        device: "mobile" | "desktop";
+        level: number;
     };
 }, {
     kind: "[host]:initial-params";
     userId: string;
     sessionId: string;
     gameParams: {
-        bestScores: number;
-        device: "mobile" | "desktop";
+        level: number;
     };
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[game]:is-ready">;
@@ -621,30 +613,25 @@ declare const game: {
         userId: z.ZodString;
         sessionId: z.ZodString;
         gameParams: z.ZodObject<{
-            bestScores: z.ZodNumber;
-            device: z.ZodEnum<["mobile", "desktop"]>;
+            level: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            bestScores: number;
-            device: "mobile" | "desktop";
+            level: number;
         }, {
-            bestScores: number;
-            device: "mobile" | "desktop";
+            level: number;
         }>;
     }, "strip", z.ZodTypeAny, {
         kind: "[host]:initial-params";
         userId: string;
         sessionId: string;
         gameParams: {
-            bestScores: number;
-            device: "mobile" | "desktop";
+            level: number;
         };
     }, {
         kind: "[host]:initial-params";
         userId: string;
         sessionId: string;
         gameParams: {
-            bestScores: number;
-            device: "mobile" | "desktop";
+            level: number;
         };
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[game]:is-ready">;
