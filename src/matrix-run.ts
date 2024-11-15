@@ -6,7 +6,7 @@ export const gameParams = z.object({
     .nonnegative()
     .int()
     .min(1)
-    .max(3)
+    .max(2)
     .describe("game difficulty"),
 });
 export type MatrixRunGameParams = z.infer<typeof gameParams>;
