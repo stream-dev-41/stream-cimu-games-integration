@@ -96,7 +96,7 @@ export const game = {
 
   // will be sanitized
   descriptionInHtml:
-    "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-3 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
+    "Users will select the right arithmetic blocks to eliminate in order to match the final answer. They will need to eliminate 1-2 blocks depending on the difficulty level. They need to correctly answer 2 rounds to earn rewards.",
   launchInstructionInHtml:
     "Select the duration of the StreamDrop and it’s difficulty level.",
   scoringRulesInHtml:
