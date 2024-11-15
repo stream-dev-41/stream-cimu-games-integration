@@ -1,17 +1,17 @@
 import { z } from 'zod';
 
-declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT"]>;
+declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT", "CIMU_STREAM_RUN"]>;
 type ThirdPartyExperienceEnum = z.infer<typeof thirdPartyExperience>;
 
-declare const gameParams$2: z.ZodObject<{
+declare const gameParams$3: z.ZodObject<{
     level: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     level: number;
 }, {
     level: number;
 }>;
-type CardDashGameParams = z.infer<typeof gameParams$2>;
-declare const message$2: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+type CardDashGameParams = z.infer<typeof gameParams$3>;
+declare const message$3: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"[game]:initialized">;
 }, "strip", z.ZodTypeAny, {
     kind: "[game]:initialized";
@@ -85,8 +85,8 @@ declare const message$2: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
 }, {
     version: 1;
 }>>;
-type CardDashMessage = z.infer<typeof message$2>;
-declare const game$2: {
+type CardDashMessage = z.infer<typeof message$3>;
+declare const game$3: {
     readonly id: "CIMU_CARD_DASH";
     readonly url: "https://stream.342games.com";
     readonly name: "Card Dash";
@@ -173,18 +173,18 @@ declare const game$2: {
 type cardDash_CardDashGameParams = CardDashGameParams;
 type cardDash_CardDashMessage = CardDashMessage;
 declare namespace cardDash {
-  export { type cardDash_CardDashGameParams as CardDashGameParams, type cardDash_CardDashMessage as CardDashMessage, game$2 as game, gameParams$2 as gameParams, message$2 as message };
+  export { type cardDash_CardDashGameParams as CardDashGameParams, type cardDash_CardDashMessage as CardDashMessage, game$3 as game, gameParams$3 as gameParams, message$3 as message };
 }
 
-declare const gameParams$1: z.ZodObject<{
+declare const gameParams$2: z.ZodObject<{
     level: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     level: number;
 }, {
     level: number;
 }>;
-type MathCraftGameParams = z.infer<typeof gameParams$1>;
-declare const message$1: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+type MathCraftGameParams = z.infer<typeof gameParams$2>;
+declare const message$2: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"[game]:initialized">;
 }, "strip", z.ZodTypeAny, {
     kind: "[game]:initialized";
@@ -258,8 +258,8 @@ declare const message$1: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
 }, {
     version: 1;
 }>>;
-type MathCraftMessage = z.infer<typeof message$1>;
-declare const game$1: {
+type MathCraftMessage = z.infer<typeof message$2>;
+declare const game$2: {
     readonly id: "CIMU_MATH_CRAFT";
     readonly url: "https://stream-math.342games.com";
     readonly name: "MathCraft";
@@ -346,10 +346,10 @@ declare const game$1: {
 type mathcraft_MathCraftGameParams = MathCraftGameParams;
 type mathcraft_MathCraftMessage = MathCraftMessage;
 declare namespace mathcraft {
-  export { type mathcraft_MathCraftGameParams as MathCraftGameParams, type mathcraft_MathCraftMessage as MathCraftMessage, game$1 as game, gameParams$1 as gameParams, message$1 as message };
+  export { type mathcraft_MathCraftGameParams as MathCraftGameParams, type mathcraft_MathCraftMessage as MathCraftMessage, game$2 as game, gameParams$2 as gameParams, message$2 as message };
 }
 
-declare const gameParams: z.ZodObject<{
+declare const gameParams$1: z.ZodObject<{
     bestScores: z.ZodNumber;
     device: z.ZodEnum<["mobile", "desktop"]>;
 }, "strip", z.ZodTypeAny, {
@@ -359,8 +359,8 @@ declare const gameParams: z.ZodObject<{
     bestScores: number;
     device: "mobile" | "desktop";
 }>;
-type SurgeRunGameParams = z.infer<typeof gameParams>;
-declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+type SurgeRunGameParams = z.infer<typeof gameParams$1>;
+declare const message$1: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"[game]:initialized">;
 }, "strip", z.ZodTypeAny, {
     kind: "[game]:initialized";
@@ -430,8 +430,8 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
 }, {
     version: 1;
 }>>;
-type SurgeRunMessage = z.infer<typeof message>;
-declare const game: {
+type SurgeRunMessage = z.infer<typeof message$1>;
+declare const game$1: {
     readonly id: "CIMU_SURGE_RUN";
     readonly url: "https://stream-run.342games.com";
     readonly name: "Surge Run";
@@ -513,11 +513,179 @@ declare const game: {
 
 type surgeRun_SurgeRunGameParams = SurgeRunGameParams;
 type surgeRun_SurgeRunMessage = SurgeRunMessage;
-declare const surgeRun_game: typeof game;
-declare const surgeRun_gameParams: typeof gameParams;
-declare const surgeRun_message: typeof message;
 declare namespace surgeRun {
-  export { type surgeRun_SurgeRunGameParams as SurgeRunGameParams, type surgeRun_SurgeRunMessage as SurgeRunMessage, surgeRun_game as game, surgeRun_gameParams as gameParams, surgeRun_message as message };
+  export { type surgeRun_SurgeRunGameParams as SurgeRunGameParams, type surgeRun_SurgeRunMessage as SurgeRunMessage, game$1 as game, gameParams$1 as gameParams, message$1 as message };
 }
 
-export { type CardDashGameParams, type CardDashMessage, type MathCraftGameParams, type MathCraftMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, cardDash, mathcraft as mathCraft, surgeRun, thirdPartyExperience };
+declare const gameParams: z.ZodObject<{
+    bestScores: z.ZodNumber;
+    device: z.ZodEnum<["mobile", "desktop"]>;
+}, "strip", z.ZodTypeAny, {
+    bestScores: number;
+    device: "mobile" | "desktop";
+}, {
+    bestScores: number;
+    device: "mobile" | "desktop";
+}>;
+type StreamRunGameParams = z.infer<typeof gameParams>;
+declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+    kind: z.ZodLiteral<"[game]:initialized">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[game]:initialized";
+}, {
+    kind: "[game]:initialized";
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[host]:key">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[host]:key";
+}, {
+    kind: "[host]:key";
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[host]:initial-params">;
+    userId: z.ZodString;
+    sessionId: z.ZodString;
+    gameParams: z.ZodObject<{
+        bestScores: z.ZodNumber;
+        device: z.ZodEnum<["mobile", "desktop"]>;
+    }, "strip", z.ZodTypeAny, {
+        bestScores: number;
+        device: "mobile" | "desktop";
+    }, {
+        bestScores: number;
+        device: "mobile" | "desktop";
+    }>;
+}, "strip", z.ZodTypeAny, {
+    kind: "[host]:initial-params";
+    userId: string;
+    sessionId: string;
+    gameParams: {
+        bestScores: number;
+        device: "mobile" | "desktop";
+    };
+}, {
+    kind: "[host]:initial-params";
+    userId: string;
+    sessionId: string;
+    gameParams: {
+        bestScores: number;
+        device: "mobile" | "desktop";
+    };
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[game]:is-ready">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[game]:is-ready";
+}, {
+    kind: "[game]:is-ready";
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[host]:start-game">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[host]:start-game";
+}, {
+    kind: "[host]:start-game";
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[game]:ended">;
+    scores: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    kind: "[game]:ended";
+    scores: number;
+}, {
+    kind: "[game]:ended";
+    scores: number;
+}>]>, z.ZodObject<{
+    version: z.ZodLiteral<1>;
+}, "strip", z.ZodTypeAny, {
+    version: 1;
+}, {
+    version: 1;
+}>>;
+type StreamRunMessage = z.infer<typeof message>;
+declare const game: {
+    readonly id: "CIMU_STREAM_RUN";
+    readonly url: "https://stream-run30.342games.com";
+    readonly name: "Stream Run";
+    readonly shortDescription: "TBU";
+    readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+        kind: z.ZodLiteral<"[game]:initialized">;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[game]:initialized";
+    }, {
+        kind: "[game]:initialized";
+    }>, z.ZodObject<{
+        kind: z.ZodLiteral<"[host]:key">;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[host]:key";
+    }, {
+        kind: "[host]:key";
+    }>, z.ZodObject<{
+        kind: z.ZodLiteral<"[host]:initial-params">;
+        userId: z.ZodString;
+        sessionId: z.ZodString;
+        gameParams: z.ZodObject<{
+            bestScores: z.ZodNumber;
+            device: z.ZodEnum<["mobile", "desktop"]>;
+        }, "strip", z.ZodTypeAny, {
+            bestScores: number;
+            device: "mobile" | "desktop";
+        }, {
+            bestScores: number;
+            device: "mobile" | "desktop";
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[host]:initial-params";
+        userId: string;
+        sessionId: string;
+        gameParams: {
+            bestScores: number;
+            device: "mobile" | "desktop";
+        };
+    }, {
+        kind: "[host]:initial-params";
+        userId: string;
+        sessionId: string;
+        gameParams: {
+            bestScores: number;
+            device: "mobile" | "desktop";
+        };
+    }>, z.ZodObject<{
+        kind: z.ZodLiteral<"[game]:is-ready">;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[game]:is-ready";
+    }, {
+        kind: "[game]:is-ready";
+    }>, z.ZodObject<{
+        kind: z.ZodLiteral<"[host]:start-game">;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[host]:start-game";
+    }, {
+        kind: "[host]:start-game";
+    }>, z.ZodObject<{
+        kind: z.ZodLiteral<"[game]:ended">;
+        scores: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[game]:ended";
+        scores: number;
+    }, {
+        kind: "[game]:ended";
+        scores: number;
+    }>]>, z.ZodObject<{
+        version: z.ZodLiteral<1>;
+    }, "strip", z.ZodTypeAny, {
+        version: 1;
+    }, {
+        version: 1;
+    }>>;
+    readonly descriptionInHtml: "TBU";
+    readonly launchInstructionInHtml: "TBU";
+    readonly scoringRulesInHtml: "TBU";
+};
+
+type streamRun_StreamRunGameParams = StreamRunGameParams;
+type streamRun_StreamRunMessage = StreamRunMessage;
+declare const streamRun_game: typeof game;
+declare const streamRun_gameParams: typeof gameParams;
+declare const streamRun_message: typeof message;
+declare namespace streamRun {
+  export { type streamRun_StreamRunGameParams as StreamRunGameParams, type streamRun_StreamRunMessage as StreamRunMessage, streamRun_game as game, streamRun_gameParams as gameParams, streamRun_message as message };
+}
+
+export { type CardDashGameParams, type CardDashMessage, type MathCraftGameParams, type MathCraftMessage, type StreamRunGameParams, type StreamRunMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, cardDash, mathcraft as mathCraft, streamRun, surgeRun, thirdPartyExperience };

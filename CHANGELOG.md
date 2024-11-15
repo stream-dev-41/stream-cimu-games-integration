@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.11...v0.4.0) (2024-11-15)
+
+
+### Features
+
+* add stream run vertical version ([1129f80](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/1129f80e21b5ae8a752ed98246cad16cda373773))
+
+
+
 ## [0.3.11](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.10...v0.3.11) (2024-11-15)
 
 

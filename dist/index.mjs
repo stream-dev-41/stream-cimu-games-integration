@@ -5,7 +5,7 @@ var __export = (target, all) => {
 };
 
 // src/common.ts
-import { z as z3 } from "zod";
+import { z as z4 } from "zod";
 
 // src/card-dash.ts
 var card_dash_exports = {};
@@ -141,69 +141,132 @@ var game2 = {
   scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
 };
 
+// src/stream-run.ts
+var stream_run_exports = {};
+__export(stream_run_exports, {
+  game: () => game3,
+  gameParams: () => gameParams3,
+  message: () => message3
+});
+import { z as z3 } from "zod";
+var gameParams3 = z3.object({
+  bestScores: z3.number().int().min(0).describe("used to display user's personal best score"),
+  device: z3.enum(["mobile", "desktop"])
+});
+var message3 = z3.discriminatedUnion("kind", [
+  z3.object({
+    kind: z3.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  z3.object({
+    kind: z3.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+  }),
+  z3.object({
+    kind: z3.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z3.string().uuid("unique userId"),
+    sessionId: z3.string().describe("unique for each game session"),
+    gameParams: gameParams3
+  }),
+  z3.object({
+    kind: z3.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  z3.object({
+    kind: z3.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    )
+  }),
+  z3.object({
+    kind: z3.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: z3.number().nonnegative().int()
+  })
+]).and(
+  z3.object({
+    version: z3.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game3 = {
+  id: "CIMU_STREAM_RUN",
+  url: "https://stream-run30.342games.com",
+  name: "Stream Run",
+  shortDescription: "TBU",
+  message: message3,
+  // will be sanitized
+  descriptionInHtml: "TBU",
+  launchInstructionInHtml: "TBU",
+  scoringRulesInHtml: "TBU"
+};
+
 // src/common.ts
-var thirdPartyExperience = z3.enum([
+var thirdPartyExperience = z4.enum([
   game.id,
-  game2.id
+  game2.id,
+  game3.id
   // add more games here
 ]);
 
 // src/surge-run.ts
 var surge_run_exports = {};
 __export(surge_run_exports, {
-  game: () => game3,
-  gameParams: () => gameParams3,
-  message: () => message3
+  game: () => game4,
+  gameParams: () => gameParams4,
+  message: () => message4
 });
-import { z as z4 } from "zod";
-var gameParams3 = z4.object({
-  bestScores: z4.number().int().min(0).describe("used to display user's personal best score"),
-  device: z4.enum(["mobile", "desktop"])
+import { z as z5 } from "zod";
+var gameParams4 = z5.object({
+  bestScores: z5.number().int().min(0).describe("used to display user's personal best score"),
+  device: z5.enum(["mobile", "desktop"])
 });
-var message3 = z4.discriminatedUnion("kind", [
-  z4.object({
-    kind: z4.literal("[game]:initialized").describe(
+var message4 = z5.discriminatedUnion("kind", [
+  z5.object({
+    kind: z5.literal("[game]:initialized").describe(
       "Should be the first event in the sequence, tells Stream when to send initial params"
     )
   }),
-  z4.object({
-    kind: z4.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+  z5.object({
+    kind: z5.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
   }),
-  z4.object({
-    kind: z4.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: z4.string().uuid("unique userId"),
-    sessionId: z4.string().describe("unique for each game session"),
-    gameParams: gameParams3
+  z5.object({
+    kind: z5.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z5.string().uuid("unique userId"),
+    sessionId: z5.string().describe("unique for each game session"),
+    gameParams: gameParams4
   }),
-  z4.object({
-    kind: z4.literal("[game]:is-ready").describe(
+  z5.object({
+    kind: z5.literal("[game]:is-ready").describe(
       "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
     )
   }),
-  z4.object({
-    kind: z4.literal("[host]:start-game").describe(
+  z5.object({
+    kind: z5.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
     )
   }),
-  z4.object({
-    kind: z4.literal("[game]:ended").describe(
+  z5.object({
+    kind: z5.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: z4.number().nonnegative().int()
+    scores: z5.number().nonnegative().int()
   })
 ]).and(
-  z4.object({
-    version: z4.literal(1).describe(
+  z5.object({
+    version: z5.literal(1).describe(
       "this is to make sure our code knows how to handle if schema updated"
     )
   })
 );
-var game3 = {
+var game4 = {
   id: "CIMU_SURGE_RUN",
   url: "https://stream-run.342games.com",
   name: "Surge Run",
   shortDescription: "TBU",
-  message: message3,
+  message: message4,
   // will be sanitized
   descriptionInHtml: "TBU",
   launchInstructionInHtml: "TBU",
@@ -212,6 +275,7 @@ var game3 = {
 export {
   card_dash_exports as cardDash,
   mathcraft_exports as mathCraft,
+  stream_run_exports as streamRun,
   surge_run_exports as surgeRun,
   thirdPartyExperience
 };
