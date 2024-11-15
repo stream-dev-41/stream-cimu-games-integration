@@ -1,3 +1,12 @@
+## [0.4.1](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.0...v0.4.1) (2024-11-15)
+
+
+### Bug Fixes
+
+* rename stream run to matrix run ([4107551](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/41075512700e1c374d1920ef3b911c524d98dbe7))
+
+
+
 # [0.4.0](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.3.11...v0.4.0) (2024-11-15)
 
 

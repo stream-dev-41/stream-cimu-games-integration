@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT", "CIMU_STREAM_RUN"]>;
+declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT", "CIMU_MATRIX_RUN"]>;
 type ThirdPartyExperienceEnum = z.infer<typeof thirdPartyExperience>;
 
 declare const gameParams$3: z.ZodObject<{
@@ -527,7 +527,7 @@ declare const gameParams: z.ZodObject<{
     bestScores: number;
     device: "mobile" | "desktop";
 }>;
-type StreamRunGameParams = z.infer<typeof gameParams>;
+type MatrixRunGameParams = z.infer<typeof gameParams>;
 declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"[game]:initialized">;
 }, "strip", z.ZodTypeAny, {
@@ -598,11 +598,11 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
 }, {
     version: 1;
 }>>;
-type StreamRunMessage = z.infer<typeof message>;
+type MatrixRunMessage = z.infer<typeof message>;
 declare const game: {
-    readonly id: "CIMU_STREAM_RUN";
+    readonly id: "CIMU_MATRIX_RUN";
     readonly url: "https://stream-run30.342games.com";
-    readonly name: "Stream Run";
+    readonly name: "Matrix Run";
     readonly shortDescription: "TBU";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
         kind: z.ZodLiteral<"[game]:initialized">;
@@ -679,13 +679,13 @@ declare const game: {
     readonly scoringRulesInHtml: "TBU";
 };
 
-type streamRun_StreamRunGameParams = StreamRunGameParams;
-type streamRun_StreamRunMessage = StreamRunMessage;
-declare const streamRun_game: typeof game;
-declare const streamRun_gameParams: typeof gameParams;
-declare const streamRun_message: typeof message;
-declare namespace streamRun {
-  export { type streamRun_StreamRunGameParams as StreamRunGameParams, type streamRun_StreamRunMessage as StreamRunMessage, streamRun_game as game, streamRun_gameParams as gameParams, streamRun_message as message };
+type matrixRun_MatrixRunGameParams = MatrixRunGameParams;
+type matrixRun_MatrixRunMessage = MatrixRunMessage;
+declare const matrixRun_game: typeof game;
+declare const matrixRun_gameParams: typeof gameParams;
+declare const matrixRun_message: typeof message;
+declare namespace matrixRun {
+  export { type matrixRun_MatrixRunGameParams as MatrixRunGameParams, type matrixRun_MatrixRunMessage as MatrixRunMessage, matrixRun_game as game, matrixRun_gameParams as gameParams, matrixRun_message as message };
 }
 
-export { type CardDashGameParams, type CardDashMessage, type MathCraftGameParams, type MathCraftMessage, type StreamRunGameParams, type StreamRunMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, cardDash, mathcraft as mathCraft, streamRun, surgeRun, thirdPartyExperience };
+export { type CardDashGameParams, type CardDashMessage, type MathCraftGameParams, type MathCraftMessage, type MatrixRunGameParams, type MatrixRunMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, cardDash, mathcraft as mathCraft, matrixRun, surgeRun, thirdPartyExperience };

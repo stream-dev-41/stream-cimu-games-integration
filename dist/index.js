@@ -22,7 +22,7 @@ var src_exports = {};
 __export(src_exports, {
   cardDash: () => card_dash_exports,
   mathCraft: () => mathcraft_exports,
-  streamRun: () => stream_run_exports,
+  matrixRun: () => matrix_run_exports,
   surgeRun: () => surge_run_exports,
   thirdPartyExperience: () => thirdPartyExperience
 });
@@ -165,9 +165,9 @@ var game2 = {
   scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
 };
 
-// src/stream-run.ts
-var stream_run_exports = {};
-__export(stream_run_exports, {
+// src/matrix-run.ts
+var matrix_run_exports = {};
+__export(matrix_run_exports, {
   game: () => game3,
   gameParams: () => gameParams3,
   message: () => message3
@@ -216,9 +216,9 @@ var message3 = import_zod3.z.discriminatedUnion("kind", [
   })
 );
 var game3 = {
-  id: "CIMU_STREAM_RUN",
+  id: "CIMU_MATRIX_RUN",
   url: "https://stream-run30.342games.com",
-  name: "Stream Run",
+  name: "Matrix Run",
   shortDescription: "TBU",
   message: message3,
   // will be sanitized
@@ -300,7 +300,7 @@ var game4 = {
 0 && (module.exports = {
   cardDash,
   mathCraft,
-  streamRun,
+  matrixRun,
   surgeRun,
   thirdPartyExperience
 });
