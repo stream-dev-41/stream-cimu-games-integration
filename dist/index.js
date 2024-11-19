@@ -165,16 +165,17 @@ var game2 = {
   scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
 };
 
-// src/matrix-run.ts
-var matrix_run_exports = {};
-__export(matrix_run_exports, {
+// src/surge-run.ts
+var surge_run_exports = {};
+__export(surge_run_exports, {
   game: () => game3,
   gameParams: () => gameParams3,
   message: () => message3
 });
 var import_zod3 = require("zod");
 var gameParams3 = import_zod3.z.object({
-  level: import_zod3.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
+  bestScores: import_zod3.z.number().int().min(0).describe("used to display user's personal best score"),
+  device: import_zod3.z.enum(["mobile", "desktop"])
 });
 var message3 = import_zod3.z.discriminatedUnion("kind", [
   import_zod3.z.object({
@@ -205,10 +206,7 @@ var message3 = import_zod3.z.discriminatedUnion("kind", [
     kind: import_zod3.z.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: import_zod3.z.number().nonnegative().int(),
-    elapsedTimeInSeconds: import_zod3.z.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
+    scores: import_zod3.z.number().nonnegative().int()
   })
 ]).and(
   import_zod3.z.object({
@@ -218,15 +216,15 @@ var message3 = import_zod3.z.discriminatedUnion("kind", [
   })
 );
 var game3 = {
-  id: "CIMU_MATRIX_RUN",
-  url: "https://stream-run30.342games.com",
-  name: "Matrix Run",
-  shortDescription: "Run and jump as far as your can",
+  id: "CIMU_SURGE_RUN",
+  url: "https://stream-run.342games.com",
+  name: "Surge Run",
+  shortDescription: "TBU",
   message: message3,
   // will be sanitized
-  descriptionInHtml: "Avoid the obstacles and escape as far as possible in the matrix. The speed increases with distance travelled. ",
-  launchInstructionInHtml: "Normal mode: No flying obstacles<br/>Hard mode: Flying obstacles introduced",
-  scoringRulesInHtml: "Fans are scored based on the final distance achieved"
+  descriptionInHtml: "TBU",
+  launchInstructionInHtml: "TBU",
+  scoringRulesInHtml: "TBU"
 };
 
 // src/common.ts
@@ -237,17 +235,16 @@ var thirdPartyExperience = import_zod4.z.enum([
   // add more games here
 ]);
 
-// src/surge-run.ts
-var surge_run_exports = {};
-__export(surge_run_exports, {
+// src/matrix-run.ts
+var matrix_run_exports = {};
+__export(matrix_run_exports, {
   game: () => game4,
   gameParams: () => gameParams4,
   message: () => message4
 });
 var import_zod5 = require("zod");
 var gameParams4 = import_zod5.z.object({
-  bestScores: import_zod5.z.number().int().min(0).describe("used to display user's personal best score"),
-  device: import_zod5.z.enum(["mobile", "desktop"])
+  level: import_zod5.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
 var message4 = import_zod5.z.discriminatedUnion("kind", [
   import_zod5.z.object({
@@ -278,7 +275,10 @@ var message4 = import_zod5.z.discriminatedUnion("kind", [
     kind: import_zod5.z.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: import_zod5.z.number().nonnegative().int()
+    scores: import_zod5.z.number().nonnegative().int(),
+    elapsedTimeInSeconds: import_zod5.z.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
   })
 ]).and(
   import_zod5.z.object({
@@ -288,15 +288,15 @@ var message4 = import_zod5.z.discriminatedUnion("kind", [
   })
 );
 var game4 = {
-  id: "CIMU_SURGE_RUN",
-  url: "https://stream-run.342games.com",
-  name: "Surge Run",
-  shortDescription: "TBU",
+  id: "CIMU_MATRIX_RUN",
+  url: "https://stream-run30.342games.com",
+  name: "Matrix Run",
+  shortDescription: "Run and jump as far as your can",
   message: message4,
   // will be sanitized
-  descriptionInHtml: "TBU",
-  launchInstructionInHtml: "TBU",
-  scoringRulesInHtml: "TBU"
+  descriptionInHtml: "Avoid the obstacles and escape as far as possible in the matrix. The speed increases with distance travelled. ",
+  launchInstructionInHtml: "Normal mode: No flying obstacles<br/>Hard mode: Flying obstacles introduced",
+  scoringRulesInHtml: "Fans are scored based on the final distance achieved"
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
