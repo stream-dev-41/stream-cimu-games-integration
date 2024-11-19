@@ -78,11 +78,13 @@ export const game = {
   id: "CIMU_MATRIX_RUN",
   url: "https://stream-run30.342games.com",
   name: "Matrix Run",
-  shortDescription: "TBU",
+  shortDescription: "Run and jump as far as your can",
   message,
 
   // will be sanitized
-  descriptionInHtml: "TBU",
-  launchInstructionInHtml: "TBU",
-  scoringRulesInHtml: "TBU",
+  descriptionInHtml:
+    "Avoid the obstacles and escape as far as possible in the matrix. The speed increases with distance travelled. ",
+  launchInstructionInHtml:
+    "Normal mode: No flying obstacles<br/>Hard mode: Flying obstacles introduced",
+  scoringRulesInHtml: "Fans are scored based on the final distance achieved",
 } as const;
