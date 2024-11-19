@@ -1,3 +1,12 @@
+## [0.4.5](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.4...v0.4.5) (2024-11-19)
+
+
+### Bug Fixes
+
+* update matrix run metadata ([b351d23](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/b351d2373399d5f69c67a7c5c3ae3390d2ca56e3))
+
+
+
 ## [0.4.4](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.3...v0.4.4) (2024-11-15)
 
 

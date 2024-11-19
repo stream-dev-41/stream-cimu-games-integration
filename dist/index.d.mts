@@ -598,7 +598,7 @@ declare const game: {
     readonly id: "CIMU_MATRIX_RUN";
     readonly url: "https://stream-run30.342games.com";
     readonly name: "Matrix Run";
-    readonly shortDescription: "TBU";
+    readonly shortDescription: "Run and jump as far as your can";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
         kind: z.ZodLiteral<"[game]:initialized">;
     }, "strip", z.ZodTypeAny, {
@@ -667,9 +667,9 @@ declare const game: {
     }, {
         version: 1;
     }>>;
-    readonly descriptionInHtml: "TBU";
-    readonly launchInstructionInHtml: "TBU";
-    readonly scoringRulesInHtml: "TBU";
+    readonly descriptionInHtml: "Avoid the obstacles and escape as far as possible in the matrix. The speed increases with distance travelled. ";
+    readonly launchInstructionInHtml: "Normal mode: No flying obstacles<br/>Hard mode: Flying obstacles introduced";
+    readonly scoringRulesInHtml: "Fans are scored based on the final distance achieved";
 };
 
 type matrixRun_MatrixRunGameParams = MatrixRunGameParams;
