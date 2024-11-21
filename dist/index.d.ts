@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT", "CIMU_MATRIX_RUN"]>;
+declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT", "CIMU_MATRIX_RUN", "CIMU_SURGE_RUN"]>;
 type ThirdPartyExperienceEnum = z.infer<typeof thirdPartyExperience>;
 
 declare const gameParams$3: z.ZodObject<{

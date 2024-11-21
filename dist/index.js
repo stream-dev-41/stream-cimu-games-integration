@@ -29,7 +29,7 @@ __export(src_exports, {
 module.exports = __toCommonJS(src_exports);
 
 // src/common.ts
-var import_zod4 = require("zod");
+var import_zod5 = require("zod");
 
 // src/card-dash.ts
 var card_dash_exports = {};
@@ -233,14 +233,6 @@ var game3 = {
   scoringRulesInHtml: "Fans are scored based on the final distance achieved"
 };
 
-// src/common.ts
-var thirdPartyExperience = import_zod4.z.enum([
-  game.id,
-  game2.id,
-  game3.id
-  // add more games here
-]);
-
 // src/surge-run.ts
 var surge_run_exports = {};
 __export(surge_run_exports, {
@@ -248,45 +240,45 @@ __export(surge_run_exports, {
   gameParams: () => gameParams4,
   message: () => message4
 });
-var import_zod5 = require("zod");
-var gameParams4 = import_zod5.z.object({
-  bestScores: import_zod5.z.number().int().min(0).describe("used to display user's personal best score"),
-  device: import_zod5.z.enum(["mobile", "desktop"])
+var import_zod4 = require("zod");
+var gameParams4 = import_zod4.z.object({
+  bestScores: import_zod4.z.number().int().min(0).describe("used to display user's personal best score"),
+  device: import_zod4.z.enum(["mobile", "desktop"])
 });
-var message4 = import_zod5.z.discriminatedUnion("kind", [
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[game]:initialized").describe(
+var message4 = import_zod4.z.discriminatedUnion("kind", [
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[game]:initialized").describe(
       "Should be the first event in the sequence, tells Stream when to send initial params"
     )
   }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
   }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: import_zod5.z.string().uuid("unique userId"),
-    sessionId: import_zod5.z.string().describe("unique for each game session"),
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: import_zod4.z.string().uuid("unique userId"),
+    sessionId: import_zod4.z.string().describe("unique for each game session"),
     gameParams: gameParams4
   }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[game]:is-ready").describe(
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[game]:is-ready").describe(
       "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
     )
   }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[host]:start-game").describe(
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
     )
   }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[game]:ended").describe(
+  import_zod4.z.object({
+    kind: import_zod4.z.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: import_zod5.z.number().nonnegative().int()
+    scores: import_zod4.z.number().nonnegative().int()
   })
 ]).and(
-  import_zod5.z.object({
-    version: import_zod5.z.literal(1).describe(
+  import_zod4.z.object({
+    version: import_zod4.z.literal(1).describe(
       "this is to make sure our code knows how to handle if schema updated"
     )
   })
@@ -302,6 +294,15 @@ var game4 = {
   launchInstructionInHtml: "TBU",
   scoringRulesInHtml: "TBU"
 };
+
+// src/common.ts
+var thirdPartyExperience = import_zod5.z.enum([
+  game.id,
+  game2.id,
+  game3.id,
+  game4.id
+  // add more games here
+]);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   cardDash,

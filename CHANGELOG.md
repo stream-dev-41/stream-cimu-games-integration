@@ -1,3 +1,12 @@
+## [0.4.9](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.8...v0.4.9) (2024-11-21)
+
+
+### Bug Fixes
+
+* re-add surge run ([3fcda4a](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/3fcda4ae4d40c22a2d1fe961db7196ca309f795c))
+
+
+
 ## [0.4.8](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.7...v0.4.8) (2024-11-21)
 
 
