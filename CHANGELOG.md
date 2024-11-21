@@ -1,3 +1,12 @@
+## [0.4.7](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.6...v0.4.7) (2024-11-21)
+
+
+### Bug Fixes
+
+* update schema ([78ca1b1](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/78ca1b1aa9dc3320b44aab473697528ef2d61346))
+
+
+
 ## [0.4.6](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.5...v0.4.6) (2024-11-19)
 
 

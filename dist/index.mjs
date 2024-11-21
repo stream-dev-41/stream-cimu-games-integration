@@ -235,6 +235,7 @@ var message4 = z5.discriminatedUnion("kind", [
     kind: z5.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
     userId: z5.string().uuid("unique userId"),
     sessionId: z5.string().describe("unique for each game session"),
+    gameDurationInSeconds: z5.number().nonnegative().int().describe("the duration of the game in seconds"),
     gameParams: gameParams4
   }),
   z5.object({
@@ -245,6 +246,9 @@ var message4 = z5.discriminatedUnion("kind", [
   z5.object({
     kind: z5.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: z5.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
     )
   }),
   z5.object({

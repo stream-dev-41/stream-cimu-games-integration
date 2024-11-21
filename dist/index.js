@@ -259,6 +259,7 @@ var message4 = import_zod5.z.discriminatedUnion("kind", [
     kind: import_zod5.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
     userId: import_zod5.z.string().uuid("unique userId"),
     sessionId: import_zod5.z.string().describe("unique for each game session"),
+    gameDurationInSeconds: import_zod5.z.number().nonnegative().int().describe("the duration of the game in seconds"),
     gameParams: gameParams4
   }),
   import_zod5.z.object({
@@ -269,6 +270,9 @@ var message4 = import_zod5.z.discriminatedUnion("kind", [
   import_zod5.z.object({
     kind: import_zod5.z.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: import_zod5.z.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
     )
   }),
   import_zod5.z.object({

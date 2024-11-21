@@ -541,6 +541,7 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     kind: z.ZodLiteral<"[host]:initial-params">;
     userId: z.ZodString;
     sessionId: z.ZodString;
+    gameDurationInSeconds: z.ZodNumber;
     gameParams: z.ZodObject<{
         level: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
@@ -552,6 +553,7 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     kind: "[host]:initial-params";
     userId: string;
     sessionId: string;
+    gameDurationInSeconds: number;
     gameParams: {
         level: number;
     };
@@ -559,6 +561,7 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     kind: "[host]:initial-params";
     userId: string;
     sessionId: string;
+    gameDurationInSeconds: number;
     gameParams: {
         level: number;
     };
@@ -570,10 +573,13 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     kind: "[game]:is-ready";
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[host]:start-game">;
+    timeLeftInSeconds: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     kind: "[host]:start-game";
+    timeLeftInSeconds: number;
 }, {
     kind: "[host]:start-game";
+    timeLeftInSeconds: number;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[game]:ended">;
     scores: z.ZodNumber;
@@ -615,6 +621,7 @@ declare const game: {
         kind: z.ZodLiteral<"[host]:initial-params">;
         userId: z.ZodString;
         sessionId: z.ZodString;
+        gameDurationInSeconds: z.ZodNumber;
         gameParams: z.ZodObject<{
             level: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
@@ -626,6 +633,7 @@ declare const game: {
         kind: "[host]:initial-params";
         userId: string;
         sessionId: string;
+        gameDurationInSeconds: number;
         gameParams: {
             level: number;
         };
@@ -633,6 +641,7 @@ declare const game: {
         kind: "[host]:initial-params";
         userId: string;
         sessionId: string;
+        gameDurationInSeconds: number;
         gameParams: {
             level: number;
         };
@@ -644,10 +653,13 @@ declare const game: {
         kind: "[game]:is-ready";
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[host]:start-game">;
+        timeLeftInSeconds: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         kind: "[host]:start-game";
+        timeLeftInSeconds: number;
     }, {
         kind: "[host]:start-game";
+        timeLeftInSeconds: number;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[game]:ended">;
         scores: z.ZodNumber;
