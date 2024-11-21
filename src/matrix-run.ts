@@ -31,6 +31,11 @@ export const message = z
         .describe("Setup game with game params, after initialised"),
       userId: z.string().uuid("unique userId"),
       sessionId: z.string().describe("unique for each game session"),
+      gameDurationInSeconds: z
+        .number()
+        .nonnegative()
+        .int()
+        .describe("the duration of the game in seconds"),
       gameParams,
     }),
     z.object({
@@ -45,6 +50,13 @@ export const message = z
         .literal("[host]:start-game")
         .describe(
           "Start the game immediately, there should be no delay time after this event is sent to let the players play the game",
+        ),
+      timeLeftInSeconds: z
+        .number()
+        .nonnegative()
+        .int()
+        .describe(
+          "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds",
         ),
     }),
     z.object({
