@@ -141,17 +141,16 @@ var game2 = {
   scoringRulesInHtml: "Fans are scored based on speed and equations solved correctly. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
 };
 
-// src/surge-run.ts
-var surge_run_exports = {};
-__export(surge_run_exports, {
+// src/matrix-run.ts
+var matrix_run_exports = {};
+__export(matrix_run_exports, {
   game: () => game3,
   gameParams: () => gameParams3,
   message: () => message3
 });
 import { z as z3 } from "zod";
 var gameParams3 = z3.object({
-  bestScores: z3.number().int().min(0).describe("used to display user's personal best score"),
-  device: z3.enum(["mobile", "desktop"])
+  level: z3.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
 var message3 = z3.discriminatedUnion("kind", [
   z3.object({
@@ -166,6 +165,7 @@ var message3 = z3.discriminatedUnion("kind", [
     kind: z3.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
     userId: z3.string().uuid("unique userId"),
     sessionId: z3.string().describe("unique for each game session"),
+    gameDurationInSeconds: z3.number().nonnegative().int().describe("the duration of the game in seconds"),
     gameParams: gameParams3
   }),
   z3.object({
@@ -176,13 +176,19 @@ var message3 = z3.discriminatedUnion("kind", [
   z3.object({
     kind: z3.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: z3.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
     )
   }),
   z3.object({
     kind: z3.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: z3.number().nonnegative().int()
+    scores: z3.number().nonnegative().int(),
+    elapsedTimeInSeconds: z3.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
   })
 ]).and(
   z3.object({
@@ -192,15 +198,15 @@ var message3 = z3.discriminatedUnion("kind", [
   })
 );
 var game3 = {
-  id: "CIMU_SURGE_RUN",
-  url: "https://stream-run.342games.com",
-  name: "Surge Run",
-  shortDescription: "TBU",
+  id: "CIMU_MATRIX_RUN",
+  url: "https://stream-run30.342games.com",
+  name: "Matrix Run",
+  shortDescription: "Run and jump as far as your can",
   message: message3,
   // will be sanitized
-  descriptionInHtml: "TBU",
-  launchInstructionInHtml: "TBU",
-  scoringRulesInHtml: "TBU"
+  descriptionInHtml: "Avoid the obstacles and escape as far as possible in the matrix. The speed increases with distance travelled. ",
+  launchInstructionInHtml: "Normal mode: No flying obstacles<br/>Hard mode: Flying obstacles introduced",
+  scoringRulesInHtml: "Fans are scored based on the final distance achieved"
 };
 
 // src/common.ts
@@ -211,16 +217,17 @@ var thirdPartyExperience = z4.enum([
   // add more games here
 ]);
 
-// src/matrix-run.ts
-var matrix_run_exports = {};
-__export(matrix_run_exports, {
+// src/surge-run.ts
+var surge_run_exports = {};
+__export(surge_run_exports, {
   game: () => game4,
   gameParams: () => gameParams4,
   message: () => message4
 });
 import { z as z5 } from "zod";
 var gameParams4 = z5.object({
-  level: z5.number().nonnegative().int().min(1).max(2).describe("game difficulty")
+  bestScores: z5.number().int().min(0).describe("used to display user's personal best score"),
+  device: z5.enum(["mobile", "desktop"])
 });
 var message4 = z5.discriminatedUnion("kind", [
   z5.object({
@@ -235,7 +242,6 @@ var message4 = z5.discriminatedUnion("kind", [
     kind: z5.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
     userId: z5.string().uuid("unique userId"),
     sessionId: z5.string().describe("unique for each game session"),
-    gameDurationInSeconds: z5.number().nonnegative().int().describe("the duration of the game in seconds"),
     gameParams: gameParams4
   }),
   z5.object({
@@ -246,19 +252,13 @@ var message4 = z5.discriminatedUnion("kind", [
   z5.object({
     kind: z5.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: z5.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
     )
   }),
   z5.object({
     kind: z5.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: z5.number().nonnegative().int(),
-    elapsedTimeInSeconds: z5.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
+    scores: z5.number().nonnegative().int()
   })
 ]).and(
   z5.object({
@@ -268,15 +268,15 @@ var message4 = z5.discriminatedUnion("kind", [
   })
 );
 var game4 = {
-  id: "CIMU_MATRIX_RUN",
-  url: "https://stream-run30.342games.com",
-  name: "Matrix Run",
-  shortDescription: "Run and jump as far as your can",
+  id: "CIMU_SURGE_RUN",
+  url: "https://stream-run.342games.com",
+  name: "Surge Run",
+  shortDescription: "TBU",
   message: message4,
   // will be sanitized
-  descriptionInHtml: "Avoid the obstacles and escape as far as possible in the matrix. The speed increases with distance travelled. ",
-  launchInstructionInHtml: "Normal mode: No flying obstacles<br/>Hard mode: Flying obstacles introduced",
-  scoringRulesInHtml: "Fans are scored based on the final distance achieved"
+  descriptionInHtml: "TBU",
+  launchInstructionInHtml: "TBU",
+  scoringRulesInHtml: "TBU"
 };
 export {
   card_dash_exports as cardDash,
