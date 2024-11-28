@@ -1,24 +1,11 @@
 import { z } from "zod";
-import { game as cardDash } from "./card-dash";
-import { game as mathCraft } from "./mathcraft";
-import { game as matrixRun } from "./matrix-run";
-import { game as surgeRun } from "./surge-run";
-
-export const thirdPartyExperience = z.enum([
-  cardDash.id,
-  mathCraft.id,
-  matrixRun.id,
-  surgeRun.id,
-  // add more games here
-]);
-export type ThirdPartyExperienceEnum = z.infer<typeof thirdPartyExperience>;
 
 export const createGameMessage = <
   GameParams extends z.ZodType,
   GameResults extends z.ZodType,
 >(
   gameParams: GameParams,
-  gameSpecificResults: GameResults,
+  gameResults: GameResults,
 ) =>
   z
     .discriminatedUnion("kind", [
@@ -77,7 +64,7 @@ export const createGameMessage = <
           .describe(
             "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft",
           ),
-        gameSpecificResults,
+        gameResults,
       }),
     ])
     .and(
@@ -89,22 +76,6 @@ export const createGameMessage = <
           ),
       }),
     );
-
-const gameKeyMessage = z.object({
-  kind: z
-    .literal("[host]:key")
-    .describe("Send key event to the game, e.g. keyboard or controller"),
-});
-
-// add key event to the game message
-export const withKeyEvent = <T extends z.ZodType>(
-  gameMessageWithoutKeyEvent: T,
-) => {
-  return z.union([
-    z.discriminatedUnion("kind", [gameKeyMessage]),
-    gameMessageWithoutKeyEvent,
-  ]);
-};
 
 export type GameConfig<T extends z.ZodType> = {
   id: string;
