@@ -21,15 +21,17 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var src_exports = {};
 __export(src_exports, {
   cardDash: () => card_dash_exports,
+  colorRecall: () => color_recall_exports,
   mathCraft: () => mathcraft_exports,
   matrixRun: () => matrix_run_exports,
   surgeRun: () => surge_run_exports,
-  thirdPartyExperience: () => thirdPartyExperience
+  thirdPartyExperience: () => thirdPartyExperience,
+  tumbleFall: () => tumble_fall_exports
 });
 module.exports = __toCommonJS(src_exports);
 
 // src/common.ts
-var import_zod5 = require("zod");
+var import_zod7 = require("zod");
 
 // src/card-dash.ts
 var card_dash_exports = {};
@@ -295,19 +297,155 @@ var game4 = {
   scoringRulesInHtml: "TBU"
 };
 
+// src/tumble-fall.ts
+var tumble_fall_exports = {};
+__export(tumble_fall_exports, {
+  game: () => game5,
+  gameParams: () => gameParams5,
+  message: () => message5
+});
+var import_zod5 = require("zod");
+var gameParams5 = import_zod5.z.object({
+  level: import_zod5.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
+});
+var message5 = import_zod5.z.discriminatedUnion("kind", [
+  import_zod5.z.object({
+    kind: import_zod5.z.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  import_zod5.z.object({
+    kind: import_zod5.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: import_zod5.z.string().uuid("unique userId"),
+    sessionId: import_zod5.z.string().describe("unique for each game session"),
+    gameDurationInSeconds: import_zod5.z.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams5
+  }),
+  import_zod5.z.object({
+    kind: import_zod5.z.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  import_zod5.z.object({
+    kind: import_zod5.z.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: import_zod5.z.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  import_zod5.z.object({
+    kind: import_zod5.z.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: import_zod5.z.number().nonnegative().int(),
+    falls: import_zod5.z.number().nonnegative().int(),
+    elapsedTimeInSeconds: import_zod5.z.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
+  })
+]).and(
+  import_zod5.z.object({
+    version: import_zod5.z.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game5 = {
+  id: "CIMU_TUMBLE_FALL",
+  url: "https://stream-four.342games.com",
+  name: "Tumble Fall",
+  shortDescription: "TBD",
+  message: message5,
+  // will be sanitized
+  descriptionInHtml: "Users will tumble their way different sized platforms to get the highest score possible. Size of platforms depends on difficulty level selected by creators.",
+  launchInstructionInHtml: "Normal mode: Larger sized platforms\nHard mode: Smaller sized platforms",
+  scoringRulesInHtml: "Fans are scored based on the number of successful jumps. Landing in the middle consecutively builds a streak. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
+};
+
+// src/color-recall.ts
+var color_recall_exports = {};
+__export(color_recall_exports, {
+  game: () => game6,
+  gameParams: () => gameParams6,
+  message: () => message6
+});
+var import_zod6 = require("zod");
+var gameParams6 = import_zod6.z.object({
+  guessColors: import_zod6.z.number().nonnegative().int().min(1).max(3).describe("number of different colors in total")
+});
+var message6 = import_zod6.z.discriminatedUnion("kind", [
+  import_zod6.z.object({
+    kind: import_zod6.z.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  import_zod6.z.object({
+    kind: import_zod6.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: import_zod6.z.string().uuid("unique userId"),
+    sessionId: import_zod6.z.string().describe("unique for each game session"),
+    gameDurationInSeconds: import_zod6.z.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams6
+  }),
+  import_zod6.z.object({
+    kind: import_zod6.z.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  import_zod6.z.object({
+    kind: import_zod6.z.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: import_zod6.z.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  import_zod6.z.object({
+    kind: import_zod6.z.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    rounds: import_zod6.z.number().nonnegative().int(),
+    scores: import_zod6.z.number().nonnegative().int(),
+    elapsedTimeInSeconds: import_zod6.z.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
+  })
+]).and(
+  import_zod6.z.object({
+    version: import_zod6.z.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game6 = {
+  id: "CIMU_COLOR_RECALL",
+  url: "https://stream-four.342games.com",
+  name: "Color Recall",
+  shortDescription: "TBD",
+  message: message6,
+  // will be sanitized
+  descriptionInHtml: "Users will have 3 rounds where they will be shown 4 different pair of color dots. The goal is to try and recall the positions of these dots as accurately as possible for the highest score.",
+  launchInstructionInHtml: "Select the duration of the StreamDrop and it\u2019s difficulty level",
+  scoringRulesInHtml: "Fans are scored based on the proximity of their guesses to the actual answer. They get 250 base games for passing and 500 bonus gems for making into Top 100."
+};
+
 // src/common.ts
-var thirdPartyExperience = import_zod5.z.enum([
+var thirdPartyExperience = import_zod7.z.enum([
   game.id,
   game2.id,
   game3.id,
-  game4.id
+  game4.id,
+  game5.id,
+  game6.id
   // add more games here
 ]);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   cardDash,
+  colorRecall,
   mathCraft,
   matrixRun,
   surgeRun,
-  thirdPartyExperience
+  thirdPartyExperience,
+  tumbleFall
 });

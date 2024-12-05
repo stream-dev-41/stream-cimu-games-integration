@@ -5,7 +5,7 @@ var __export = (target, all) => {
 };
 
 // src/common.ts
-import { z as z5 } from "zod";
+import { z as z7 } from "zod";
 
 // src/card-dash.ts
 var card_dash_exports = {};
@@ -271,18 +271,154 @@ var game4 = {
   scoringRulesInHtml: "TBU"
 };
 
+// src/tumble-fall.ts
+var tumble_fall_exports = {};
+__export(tumble_fall_exports, {
+  game: () => game5,
+  gameParams: () => gameParams5,
+  message: () => message5
+});
+import { z as z5 } from "zod";
+var gameParams5 = z5.object({
+  level: z5.number().nonnegative().int().min(1).max(2).describe("game difficulty")
+});
+var message5 = z5.discriminatedUnion("kind", [
+  z5.object({
+    kind: z5.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  z5.object({
+    kind: z5.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z5.string().uuid("unique userId"),
+    sessionId: z5.string().describe("unique for each game session"),
+    gameDurationInSeconds: z5.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams5
+  }),
+  z5.object({
+    kind: z5.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  z5.object({
+    kind: z5.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: z5.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  z5.object({
+    kind: z5.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: z5.number().nonnegative().int(),
+    falls: z5.number().nonnegative().int(),
+    elapsedTimeInSeconds: z5.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
+  })
+]).and(
+  z5.object({
+    version: z5.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game5 = {
+  id: "CIMU_TUMBLE_FALL",
+  url: "https://stream-four.342games.com",
+  name: "Tumble Fall",
+  shortDescription: "TBD",
+  message: message5,
+  // will be sanitized
+  descriptionInHtml: "Users will tumble their way different sized platforms to get the highest score possible. Size of platforms depends on difficulty level selected by creators.",
+  launchInstructionInHtml: "Normal mode: Larger sized platforms\nHard mode: Smaller sized platforms",
+  scoringRulesInHtml: "Fans are scored based on the number of successful jumps. Landing in the middle consecutively builds a streak. They get 250 base gems for passing and 500 bonus gems for making into Top 100."
+};
+
+// src/color-recall.ts
+var color_recall_exports = {};
+__export(color_recall_exports, {
+  game: () => game6,
+  gameParams: () => gameParams6,
+  message: () => message6
+});
+import { z as z6 } from "zod";
+var gameParams6 = z6.object({
+  guessColors: z6.number().nonnegative().int().min(1).max(3).describe("number of different colors in total")
+});
+var message6 = z6.discriminatedUnion("kind", [
+  z6.object({
+    kind: z6.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  z6.object({
+    kind: z6.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z6.string().uuid("unique userId"),
+    sessionId: z6.string().describe("unique for each game session"),
+    gameDurationInSeconds: z6.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams6
+  }),
+  z6.object({
+    kind: z6.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  z6.object({
+    kind: z6.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: z6.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  z6.object({
+    kind: z6.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    rounds: z6.number().nonnegative().int(),
+    scores: z6.number().nonnegative().int(),
+    elapsedTimeInSeconds: z6.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    )
+  })
+]).and(
+  z6.object({
+    version: z6.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var game6 = {
+  id: "CIMU_COLOR_RECALL",
+  url: "https://stream-four.342games.com",
+  name: "Color Recall",
+  shortDescription: "TBD",
+  message: message6,
+  // will be sanitized
+  descriptionInHtml: "Users will have 3 rounds where they will be shown 4 different pair of color dots. The goal is to try and recall the positions of these dots as accurately as possible for the highest score.",
+  launchInstructionInHtml: "Select the duration of the StreamDrop and it\u2019s difficulty level",
+  scoringRulesInHtml: "Fans are scored based on the proximity of their guesses to the actual answer. They get 250 base games for passing and 500 bonus gems for making into Top 100."
+};
+
 // src/common.ts
-var thirdPartyExperience = z5.enum([
+var thirdPartyExperience = z7.enum([
   game.id,
   game2.id,
   game3.id,
-  game4.id
+  game4.id,
+  game5.id,
+  game6.id
   // add more games here
 ]);
 export {
   card_dash_exports as cardDash,
+  color_recall_exports as colorRecall,
   mathcraft_exports as mathCraft,
   matrix_run_exports as matrixRun,
   surge_run_exports as surgeRun,
-  thirdPartyExperience
+  thirdPartyExperience,
+  tumble_fall_exports as tumbleFall
 };
