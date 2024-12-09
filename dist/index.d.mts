@@ -774,7 +774,7 @@ declare const game$1: {
     readonly id: "CIMU_TUMBLE_FALL";
     readonly url: "https://stream-four.342games.com";
     readonly name: "Tumble Fall";
-    readonly shortDescription: "TBD";
+    readonly shortDescription: "Jump your way down to score points";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
         kind: z.ZodLiteral<"[game]:initialized">;
     }, "strip", z.ZodTypeAny, {
@@ -941,7 +941,7 @@ declare const game: {
     readonly id: "CIMU_COLOR_RECALL";
     readonly url: "https://stream-four.342games.com";
     readonly name: "Color Recall";
-    readonly shortDescription: "TBD";
+    readonly shortDescription: "Recall the positions of the colored dots ";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
         kind: z.ZodLiteral<"[game]:initialized">;
     }, "strip", z.ZodTypeAny, {

@@ -1,3 +1,12 @@
+## [0.4.11](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.10...v0.4.11) (2024-12-09)
+
+
+### Bug Fixes
+
+* game short description ([d28c5f1](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/d28c5f188d4eb23d74a1aa37b08295b098178e39))
+
+
+
 ## [0.4.10](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.9...v0.4.10) (2024-12-05)
 
 

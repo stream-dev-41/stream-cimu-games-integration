@@ -329,7 +329,7 @@ var game5 = {
   id: "CIMU_TUMBLE_FALL",
   url: "https://stream-four.342games.com",
   name: "Tumble Fall",
-  shortDescription: "TBD",
+  shortDescription: "Jump your way down to score points",
   message: message5,
   // will be sanitized
   descriptionInHtml: "Users will tumble their way different sized platforms to get the highest score possible. Size of platforms depends on difficulty level selected by creators.",
@@ -395,7 +395,7 @@ var game6 = {
   id: "CIMU_COLOR_RECALL",
   url: "https://stream-four.342games.com",
   name: "Color Recall",
-  shortDescription: "TBD",
+  shortDescription: "Recall the positions of the colored dots\xA0",
   message: message6,
   // will be sanitized
   descriptionInHtml: "Users will have 3 rounds where they will be shown 4 different pair of color dots. The goal is to try and recall the positions of these dots as accurately as possible for the highest score.",
