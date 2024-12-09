@@ -86,7 +86,7 @@ export const game = {
   id: "CIMU_TUMBLE_FALL",
   url: "https://stream-four.342games.com",
   name: "Tumble Fall",
-  shortDescription: "TBD",
+  shortDescription: "Jump your way down to score points",
   message,
 
   // will be sanitized

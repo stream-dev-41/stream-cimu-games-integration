@@ -86,7 +86,7 @@ export const game = {
   id: "CIMU_COLOR_RECALL",
   url: "https://stream-four.342games.com",
   name: "Color Recall",
-  shortDescription: "TBD",
+  shortDescription: "Recall the positions of the colored dots ",
   message,
 
   // will be sanitized
