@@ -419,7 +419,7 @@ var message6 = import_zod6.z.discriminatedUnion("kind", [
 );
 var game6 = {
   id: "CIMU_COLOR_RECALL",
-  url: "https://stream-four.342games.com",
+  url: "https://stream-five.342games.com",
   name: "Color Recall",
   shortDescription: "Recall the positions of the colored dots\xA0",
   message: message6,

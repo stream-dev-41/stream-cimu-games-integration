@@ -1,3 +1,12 @@
+## [0.4.12](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.11...v0.4.12) (2024-12-10)
+
+
+### Bug Fixes
+
+* wrong url for color recall ([f50ab6c](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/f50ab6c63d59eb843d069e8f64f16f216ae73ae2))
+
+
+
 ## [0.4.11](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.10...v0.4.11) (2024-12-09)
 
 

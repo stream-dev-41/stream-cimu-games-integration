@@ -939,7 +939,7 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
 type ColorRecallMessage = z.infer<typeof message>;
 declare const game: {
     readonly id: "CIMU_COLOR_RECALL";
-    readonly url: "https://stream-four.342games.com";
+    readonly url: "https://stream-five.342games.com";
     readonly name: "Color Recall";
     readonly shortDescription: "Recall the positions of the colored dots ";
     readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
