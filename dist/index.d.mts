@@ -988,7 +988,7 @@ declare const game: {
         version: 1;
     }>>;
     readonly descriptionInHtml: "Users will have 3 rounds where they will be shown 4 different pair of color dots. The goal is to try and recall the positions of these dots as accurately as possible for the highest score.";
-    readonly launchInstructionInHtml: "Select the duration of the StreamDrop and it’s difficulty level";
+    readonly launchInstructionInHtml: "Select the duration of the StreamDrop";
     readonly scoringRulesInHtml: "Fans are scored based on the proximity of their guesses to the actual answer. They get 250 base games for passing and 500 bonus gems for making into Top 100.";
 };
 
