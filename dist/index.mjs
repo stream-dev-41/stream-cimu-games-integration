@@ -345,7 +345,7 @@ __export(color_recall_exports, {
   message: () => message6
 });
 import { z as z6 } from "zod";
-var gameParams6 = z6.object({});
+var gameParams6 = z6.void();
 var message6 = z6.discriminatedUnion("kind", [
   z6.object({
     kind: z6.literal("[game]:initialized").describe(

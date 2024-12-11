@@ -1,3 +1,12 @@
+## [0.4.14](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.13...v0.4.14) (2024-12-11)
+
+
+### Bug Fixes
+
+* color recall game params void ([4302661](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/4302661599a8a6ba3f39f50d7c95ac1f34dea244))
+
+
+
 ## [0.4.13](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.12...v0.4.13) (2024-12-11)
 
 
