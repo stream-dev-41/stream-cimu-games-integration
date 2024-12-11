@@ -1,14 +1,6 @@
 import { z } from "zod";
 
-export const gameParams = z.object({
-  guessColors: z
-    .number()
-    .nonnegative()
-    .int()
-    .min(1)
-    .max(3)
-    .describe("number of different colors in total"),
-});
+export const gameParams = z.object({});
 export type ColorRecallGameParams = z.infer<typeof gameParams>;
 
 export const message = z
@@ -92,8 +84,7 @@ export const game = {
   // will be sanitized
   descriptionInHtml:
     "Users will have 3 rounds where they will be shown 4 different pair of color dots. The goal is to try and recall the positions of these dots as accurately as possible for the highest score.",
-  launchInstructionInHtml:
-    "Select the duration of the StreamDrop and it’s difficulty level",
+  launchInstructionInHtml: "Select the duration of the StreamDrop",
   scoringRulesInHtml:
     "Fans are scored based on the proximity of their guesses to the actual answer. They get 250 base games for passing and 500 bonus gems for making into Top 100.",
 } as const;
