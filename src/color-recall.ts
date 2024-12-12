@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const gameParams = z.void();
+export const gameParams = z.object({});
 export type ColorRecallGameParams = z.infer<typeof gameParams>;
 
 export const message = z
