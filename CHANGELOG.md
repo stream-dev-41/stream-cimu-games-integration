@@ -1,3 +1,12 @@
+## [0.4.15](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.14...v0.4.15) (2024-12-12)
+
+
+### Bug Fixes
+
+* color recall empty obj ([dc89ccf](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/dc89ccf7362123c1413a00775929025208118db2))
+
+
+
 ## [0.4.14](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.13...v0.4.14) (2024-12-11)
 
 

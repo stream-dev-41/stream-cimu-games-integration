@@ -857,7 +857,7 @@ declare namespace tumbleFall {
   export { type tumbleFall_TumbleFallGameParams as TumbleFallGameParams, type tumbleFall_TumbleFallMessage as TumbleFallMessage, game$1 as game, gameParams$1 as gameParams, message$1 as message };
 }
 
-declare const gameParams: z.ZodVoid;
+declare const gameParams: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
 type ColorRecallGameParams = z.infer<typeof gameParams>;
 declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"[game]:initialized">;
@@ -870,19 +870,19 @@ declare const message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodO
     userId: z.ZodString;
     sessionId: z.ZodString;
     gameDurationInSeconds: z.ZodNumber;
-    gameParams: z.ZodVoid;
+    gameParams: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
 }, "strip", z.ZodTypeAny, {
     kind: "[host]:initial-params";
     userId: string;
     sessionId: string;
     gameDurationInSeconds: number;
-    gameParams?: void | undefined;
+    gameParams: {};
 }, {
     kind: "[host]:initial-params";
     userId: string;
     sessionId: string;
     gameDurationInSeconds: number;
-    gameParams?: void | undefined;
+    gameParams: {};
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[game]:is-ready">;
 }, "strip", z.ZodTypeAny, {
@@ -937,19 +937,19 @@ declare const game: {
         userId: z.ZodString;
         sessionId: z.ZodString;
         gameDurationInSeconds: z.ZodNumber;
-        gameParams: z.ZodVoid;
+        gameParams: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
     }, "strip", z.ZodTypeAny, {
         kind: "[host]:initial-params";
         userId: string;
         sessionId: string;
         gameDurationInSeconds: number;
-        gameParams?: void | undefined;
+        gameParams: {};
     }, {
         kind: "[host]:initial-params";
         userId: string;
         sessionId: string;
         gameDurationInSeconds: number;
-        gameParams?: void | undefined;
+        gameParams: {};
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[game]:is-ready">;
     }, "strip", z.ZodTypeAny, {
