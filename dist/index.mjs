@@ -71,7 +71,7 @@ import { z as z3 } from "zod";
 var gameParams3 = z3.object({
   level: z3.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message3 = withKeyEvent(createGameMessage(gameParams3));
+var message3 = withKeyEvent(createGameMessage(gameParams3, {}));
 var game3 = {
   id: "CIMU_MATRIX_RUN",
   url: "https://stream-run30.342games.com",

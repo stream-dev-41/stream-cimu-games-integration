@@ -99,7 +99,7 @@ var import_zod3 = require("zod");
 var gameParams3 = import_zod3.z.object({
   level: import_zod3.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message3 = withKeyEvent(createGameMessage(gameParams3));
+var message3 = withKeyEvent(createGameMessage(gameParams3, {}));
 var game3 = {
   id: "CIMU_MATRIX_RUN",
   url: "https://stream-run30.342games.com",
