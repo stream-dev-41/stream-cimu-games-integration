@@ -1,3 +1,12 @@
+## [0.4.17](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.16...v0.4.17) (2024-12-26)
+
+
+### Bug Fixes
+
+* use new util ([9493ab8](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/9493ab8529468ed5a741d1e8e6859b3353c84db7))
+
+
+
 ## [0.4.16](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.15...v0.4.16) (2024-12-26)
 
 

@@ -46,13 +46,10 @@ var import_zod = require("zod");
 var gameParams = import_zod.z.object({
   level: import_zod.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message = createGameMessage(
-  gameParams,
-  import_zod.z.object({
-    pairs: import_zod.z.number().nonnegative().int(),
-    mistakes: import_zod.z.number().nonnegative().int()
-  })
-);
+var message = createGameMessage(gameParams, {
+  pairs: import_zod.z.number().nonnegative().int(),
+  mistakes: import_zod.z.number().nonnegative().int()
+});
 var game = {
   id: "CIMU_CARD_DASH",
   url: "https://stream.342games.com",
@@ -75,13 +72,10 @@ var import_zod2 = require("zod");
 var gameParams2 = import_zod2.z.object({
   level: import_zod2.z.number().nonnegative().int().min(1).max(3).describe("game difficulty")
 });
-var message2 = createGameMessage(
-  gameParams2,
-  import_zod2.z.object({
-    mistakes: import_zod2.z.number().nonnegative().int(),
-    correctAnswers: import_zod2.z.number().nonnegative().int().describe("The number of questions answered correctly in the game.")
-  })
-);
+var message2 = createGameMessage(gameParams2, {
+  mistakes: import_zod2.z.number().nonnegative().int(),
+  correctAnswers: import_zod2.z.number().nonnegative().int().describe("The number of questions answered correctly in the game.")
+});
 var game2 = {
   id: "CIMU_MATH_CRAFT",
   url: "https://stream-math.342games.com",
@@ -105,9 +99,7 @@ var import_zod3 = require("zod");
 var gameParams3 = import_zod3.z.object({
   level: import_zod3.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message3 = withKeyEvent(
-  createGameMessage(gameParams3, import_zod3.z.object({}))
-);
+var message3 = withKeyEvent(createGameMessage(gameParams3));
 var game3 = {
   id: "CIMU_MATRIX_RUN",
   url: "https://stream-run30.342games.com",
@@ -193,49 +185,9 @@ var import_zod5 = require("zod");
 var gameParams5 = import_zod5.z.object({
   level: import_zod5.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message5 = import_zod5.z.discriminatedUnion("kind", [
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: import_zod5.z.string().uuid("unique userId"),
-    sessionId: import_zod5.z.string().describe("unique for each game session"),
-    gameDurationInSeconds: import_zod5.z.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams: gameParams5
-  }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: import_zod5.z.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  import_zod5.z.object({
-    kind: import_zod5.z.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    scores: import_zod5.z.number().nonnegative().int(),
-    falls: import_zod5.z.number().nonnegative().int(),
-    elapsedTimeInSeconds: import_zod5.z.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
-  })
-]).and(
-  import_zod5.z.object({
-    version: import_zod5.z.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
-  })
-);
+var message5 = createGameMessage(gameParams5, {
+  falls: import_zod5.z.number().nonnegative().int()
+});
 var game5 = {
   id: "CIMU_TUMBLE_FALL",
   url: "https://stream-four.342games.com",
@@ -257,49 +209,9 @@ __export(color_recall_exports, {
 });
 var import_zod6 = require("zod");
 var gameParams6 = import_zod6.z.object({});
-var message6 = import_zod6.z.discriminatedUnion("kind", [
-  import_zod6.z.object({
-    kind: import_zod6.z.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  import_zod6.z.object({
-    kind: import_zod6.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: import_zod6.z.string().uuid("unique userId"),
-    sessionId: import_zod6.z.string().describe("unique for each game session"),
-    gameDurationInSeconds: import_zod6.z.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams: gameParams6
-  }),
-  import_zod6.z.object({
-    kind: import_zod6.z.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  import_zod6.z.object({
-    kind: import_zod6.z.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: import_zod6.z.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  import_zod6.z.object({
-    kind: import_zod6.z.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    rounds: import_zod6.z.number().nonnegative().int(),
-    scores: import_zod6.z.number().nonnegative().int(),
-    elapsedTimeInSeconds: import_zod6.z.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
-  })
-]).and(
-  import_zod6.z.object({
-    version: import_zod6.z.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
-  })
-);
+var message6 = createGameMessage(gameParams6, {
+  rounds: import_zod6.z.number().nonnegative().int()
+});
 var game6 = {
   id: "CIMU_COLOR_RECALL",
   url: "https://stream-five.342games.com",
@@ -322,7 +234,7 @@ var thirdPartyExperience = import_zod7.z.enum([
   game6.id
   // add more games here
 ]);
-var createGameMessage = (gameParams7, gameSpecificResults) => import_zod7.z.discriminatedUnion("kind", [
+var createGameMessage = (gameParams7, gameResults) => import_zod7.z.discriminatedUnion("kind", [
   import_zod7.z.object({
     kind: import_zod7.z.literal("[game]:initialized").describe(
       "Should be the first event in the sequence, tells Stream when to send initial params"
@@ -356,7 +268,7 @@ var createGameMessage = (gameParams7, gameSpecificResults) => import_zod7.z.disc
     elapsedTimeInSeconds: import_zod7.z.number().nonnegative().int().describe(
       "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
     ),
-    gameSpecificResults
+    ...gameResults || {}
   })
 ]).and(
   import_zod7.z.object({

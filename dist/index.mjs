@@ -18,13 +18,10 @@ import { z } from "zod";
 var gameParams = z.object({
   level: z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message = createGameMessage(
-  gameParams,
-  z.object({
-    pairs: z.number().nonnegative().int(),
-    mistakes: z.number().nonnegative().int()
-  })
-);
+var message = createGameMessage(gameParams, {
+  pairs: z.number().nonnegative().int(),
+  mistakes: z.number().nonnegative().int()
+});
 var game = {
   id: "CIMU_CARD_DASH",
   url: "https://stream.342games.com",
@@ -47,13 +44,10 @@ import { z as z2 } from "zod";
 var gameParams2 = z2.object({
   level: z2.number().nonnegative().int().min(1).max(3).describe("game difficulty")
 });
-var message2 = createGameMessage(
-  gameParams2,
-  z2.object({
-    mistakes: z2.number().nonnegative().int(),
-    correctAnswers: z2.number().nonnegative().int().describe("The number of questions answered correctly in the game.")
-  })
-);
+var message2 = createGameMessage(gameParams2, {
+  mistakes: z2.number().nonnegative().int(),
+  correctAnswers: z2.number().nonnegative().int().describe("The number of questions answered correctly in the game.")
+});
 var game2 = {
   id: "CIMU_MATH_CRAFT",
   url: "https://stream-math.342games.com",
@@ -77,9 +71,7 @@ import { z as z3 } from "zod";
 var gameParams3 = z3.object({
   level: z3.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message3 = withKeyEvent(
-  createGameMessage(gameParams3, z3.object({}))
-);
+var message3 = withKeyEvent(createGameMessage(gameParams3));
 var game3 = {
   id: "CIMU_MATRIX_RUN",
   url: "https://stream-run30.342games.com",
@@ -165,49 +157,9 @@ import { z as z5 } from "zod";
 var gameParams5 = z5.object({
   level: z5.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message5 = z5.discriminatedUnion("kind", [
-  z5.object({
-    kind: z5.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  z5.object({
-    kind: z5.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: z5.string().uuid("unique userId"),
-    sessionId: z5.string().describe("unique for each game session"),
-    gameDurationInSeconds: z5.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams: gameParams5
-  }),
-  z5.object({
-    kind: z5.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  z5.object({
-    kind: z5.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: z5.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  z5.object({
-    kind: z5.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    scores: z5.number().nonnegative().int(),
-    falls: z5.number().nonnegative().int(),
-    elapsedTimeInSeconds: z5.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
-  })
-]).and(
-  z5.object({
-    version: z5.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
-  })
-);
+var message5 = createGameMessage(gameParams5, {
+  falls: z5.number().nonnegative().int()
+});
 var game5 = {
   id: "CIMU_TUMBLE_FALL",
   url: "https://stream-four.342games.com",
@@ -229,49 +181,9 @@ __export(color_recall_exports, {
 });
 import { z as z6 } from "zod";
 var gameParams6 = z6.object({});
-var message6 = z6.discriminatedUnion("kind", [
-  z6.object({
-    kind: z6.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  z6.object({
-    kind: z6.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: z6.string().uuid("unique userId"),
-    sessionId: z6.string().describe("unique for each game session"),
-    gameDurationInSeconds: z6.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams: gameParams6
-  }),
-  z6.object({
-    kind: z6.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  z6.object({
-    kind: z6.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: z6.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  z6.object({
-    kind: z6.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    rounds: z6.number().nonnegative().int(),
-    scores: z6.number().nonnegative().int(),
-    elapsedTimeInSeconds: z6.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
-  })
-]).and(
-  z6.object({
-    version: z6.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
-  })
-);
+var message6 = createGameMessage(gameParams6, {
+  rounds: z6.number().nonnegative().int()
+});
 var game6 = {
   id: "CIMU_COLOR_RECALL",
   url: "https://stream-five.342games.com",
@@ -294,7 +206,7 @@ var thirdPartyExperience = z7.enum([
   game6.id
   // add more games here
 ]);
-var createGameMessage = (gameParams7, gameSpecificResults) => z7.discriminatedUnion("kind", [
+var createGameMessage = (gameParams7, gameResults) => z7.discriminatedUnion("kind", [
   z7.object({
     kind: z7.literal("[game]:initialized").describe(
       "Should be the first event in the sequence, tells Stream when to send initial params"
@@ -328,7 +240,7 @@ var createGameMessage = (gameParams7, gameSpecificResults) => z7.discriminatedUn
     elapsedTimeInSeconds: z7.number().nonnegative().int().describe(
       "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
     ),
-    gameSpecificResults
+    ...gameResults || {}
   })
 ]).and(
   z7.object({
