@@ -2,101 +2,6 @@ import { z } from 'zod';
 
 declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT", "CIMU_MATRIX_RUN", "CIMU_SURGE_RUN", "CIMU_TUMBLE_FALL", "CIMU_COLOR_RECALL"]>;
 type ThirdPartyExperienceEnum = z.infer<typeof thirdPartyExperience>;
-declare const createGameMessage: <GameParams extends z.ZodType, GameResults extends Record<string, z.ZodType>>(gameParams: GameParams, gameResults: GameResults) => z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
-    kind: z.ZodLiteral<"[game]:initialized">;
-}, "strip", z.ZodTypeAny, {
-    kind: "[game]:initialized";
-}, {
-    kind: "[game]:initialized";
-}>, z.ZodObject<{
-    kind: z.ZodLiteral<"[host]:initial-params">;
-    userId: z.ZodString;
-    sessionId: z.ZodString;
-    gameDurationInSeconds: z.ZodNumber;
-    gameParams: GameParams;
-}, "strip", z.ZodTypeAny, { [k in keyof z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
-    kind: z.ZodLiteral<"[host]:initial-params">;
-    userId: z.ZodString;
-    sessionId: z.ZodString;
-    gameDurationInSeconds: z.ZodNumber;
-    gameParams: GameParams;
-}>, any>]: z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
-    kind: z.ZodLiteral<"[host]:initial-params">;
-    userId: z.ZodString;
-    sessionId: z.ZodString;
-    gameDurationInSeconds: z.ZodNumber;
-    gameParams: GameParams;
-}>, any>[k]; }, { [k_1 in keyof z.baseObjectInputType<{
-    kind: z.ZodLiteral<"[host]:initial-params">;
-    userId: z.ZodString;
-    sessionId: z.ZodString;
-    gameDurationInSeconds: z.ZodNumber;
-    gameParams: GameParams;
-}>]: z.baseObjectInputType<{
-    kind: z.ZodLiteral<"[host]:initial-params">;
-    userId: z.ZodString;
-    sessionId: z.ZodString;
-    gameDurationInSeconds: z.ZodNumber;
-    gameParams: GameParams;
-}>[k_1]; }>, z.ZodObject<{
-    kind: z.ZodLiteral<"[game]:is-ready">;
-}, "strip", z.ZodTypeAny, {
-    kind: "[game]:is-ready";
-}, {
-    kind: "[game]:is-ready";
-}>, z.ZodObject<{
-    kind: z.ZodLiteral<"[host]:start-game">;
-    timeLeftInSeconds: z.ZodNumber;
-}, "strip", z.ZodTypeAny, {
-    kind: "[host]:start-game";
-    timeLeftInSeconds: number;
-}, {
-    kind: "[host]:start-game";
-    timeLeftInSeconds: number;
-}>, z.ZodObject<{
-    kind: z.ZodLiteral<"[game]:ended">;
-    scores: z.ZodNumber;
-    elapsedTimeInSeconds: z.ZodNumber;
-} & GameResults, "strip", z.ZodTypeAny, { [k_2 in keyof z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
-    kind: z.ZodLiteral<"[game]:ended">;
-    scores: z.ZodNumber;
-    elapsedTimeInSeconds: z.ZodNumber;
-} & GameResults>, any>]: z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
-    kind: z.ZodLiteral<"[game]:ended">;
-    scores: z.ZodNumber;
-    elapsedTimeInSeconds: z.ZodNumber;
-} & GameResults>, any>[k_2]; }, { [k_1_1 in keyof z.baseObjectInputType<{
-    kind: z.ZodLiteral<"[game]:ended">;
-    scores: z.ZodNumber;
-    elapsedTimeInSeconds: z.ZodNumber;
-} & GameResults>]: z.baseObjectInputType<{
-    kind: z.ZodLiteral<"[game]:ended">;
-    scores: z.ZodNumber;
-    elapsedTimeInSeconds: z.ZodNumber;
-} & GameResults>[k_1_1]; }>]>, z.ZodObject<{
-    version: z.ZodLiteral<1>;
-}, "strip", z.ZodTypeAny, {
-    version: 1;
-}, {
-    version: 1;
-}>>;
-declare const withKeyEvent: <T extends z.ZodType>(gameMessageWithoutKeyEvent: T) => z.ZodUnion<[z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
-    kind: z.ZodLiteral<"[host]:key">;
-}, "strip", z.ZodTypeAny, {
-    kind: "[host]:key";
-}, {
-    kind: "[host]:key";
-}>]>, T]>;
-type GameConfig<T extends z.ZodType> = {
-    id: string;
-    url: string;
-    name: string;
-    shortDescription: string;
-    message: T;
-    descriptionInHtml: string;
-    launchInstructionInHtml: string;
-    scoringRulesInHtml: string;
-};
 
 declare const gameParams$5: z.ZodObject<{
     level: z.ZodNumber;
@@ -163,17 +68,17 @@ declare const message$5: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
     pairs: z.ZodNumber;
     mistakes: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    pairs: number;
-    mistakes: number;
     kind: "[game]:ended";
     scores: number;
     elapsedTimeInSeconds: number;
+    pairs: number;
+    mistakes: number;
 }, {
-    pairs: number;
-    mistakes: number;
     kind: "[game]:ended";
     scores: number;
     elapsedTimeInSeconds: number;
+    pairs: number;
+    mistakes: number;
 }>]>, z.ZodObject<{
     version: z.ZodLiteral<1>;
 }, "strip", z.ZodTypeAny, {
@@ -244,17 +149,17 @@ declare const game$5: {
         pairs: z.ZodNumber;
         mistakes: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        pairs: number;
-        mistakes: number;
         kind: "[game]:ended";
         scores: number;
         elapsedTimeInSeconds: number;
+        pairs: number;
+        mistakes: number;
     }, {
-        pairs: number;
-        mistakes: number;
         kind: "[game]:ended";
         scores: number;
         elapsedTimeInSeconds: number;
+        pairs: number;
+        mistakes: number;
     }>]>, z.ZodObject<{
         version: z.ZodLiteral<1>;
     }, "strip", z.ZodTypeAny, {
@@ -338,16 +243,16 @@ declare const message$4: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
     mistakes: z.ZodNumber;
     correctAnswers: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    mistakes: number;
     kind: "[game]:ended";
     scores: number;
     elapsedTimeInSeconds: number;
+    mistakes: number;
     correctAnswers: number;
 }, {
-    mistakes: number;
     kind: "[game]:ended";
     scores: number;
     elapsedTimeInSeconds: number;
+    mistakes: number;
     correctAnswers: number;
 }>]>, z.ZodObject<{
     version: z.ZodLiteral<1>;
@@ -419,16 +324,16 @@ declare const game$4: {
         mistakes: z.ZodNumber;
         correctAnswers: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        mistakes: number;
         kind: "[game]:ended";
         scores: number;
         elapsedTimeInSeconds: number;
+        mistakes: number;
         correctAnswers: number;
     }, {
-        mistakes: number;
         kind: "[game]:ended";
         scores: number;
         elapsedTimeInSeconds: number;
+        mistakes: number;
         correctAnswers: number;
     }>]>, z.ZodObject<{
         version: z.ZodLiteral<1>;
@@ -1104,4 +1009,4 @@ declare namespace colorRecall {
   export { type colorRecall_ColorRecallGameParams as ColorRecallGameParams, type colorRecall_ColorRecallMessage as ColorRecallMessage, colorRecall_game as game, colorRecall_gameParams as gameParams, colorRecall_message as message };
 }
 
-export { type CardDashGameParams, type CardDashMessage, type ColorRecallGameParams, type ColorRecallMessage, type GameConfig, type MathCraftGameParams, type MathCraftMessage, type MatrixRunGameParams, type MatrixRunMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, type TumbleFallGameParams, type TumbleFallMessage, cardDash, colorRecall, createGameMessage, mathcraft as mathCraft, matrixRun, surgeRun, thirdPartyExperience, tumbleFall, withKeyEvent };
+export { type CardDashGameParams, type CardDashMessage, type ColorRecallGameParams, type ColorRecallMessage, type MathCraftGameParams, type MathCraftMessage, type MatrixRunGameParams, type MatrixRunMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, type TumbleFallGameParams, type TumbleFallMessage, cardDash, colorRecall, mathcraft as mathCraft, matrixRun, surgeRun, thirdPartyExperience, tumbleFall };

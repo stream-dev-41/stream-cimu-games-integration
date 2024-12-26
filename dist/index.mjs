@@ -5,7 +5,7 @@ var __export = (target, all) => {
 };
 
 // src/common.ts
-import { z as z7 } from "zod";
+import { z as z8 } from "zod";
 
 // src/card-dash.ts
 var card_dash_exports = {};
@@ -14,13 +14,70 @@ __export(card_dash_exports, {
   gameParams: () => gameParams,
   message: () => message
 });
+import { z as z2 } from "zod";
+
+// src/util.ts
 import { z } from "zod";
-var gameParams = z.object({
-  level: z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
+var createGameMessage = (gameParams7, gameResults) => z.discriminatedUnion("kind", [
+  z.object({
+    kind: z.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  z.object({
+    kind: z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z.string().uuid("unique userId"),
+    sessionId: z.string().describe("unique for each game session"),
+    gameDurationInSeconds: z.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams7
+  }),
+  z.object({
+    kind: z.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  z.object({
+    kind: z.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: z.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  z.object({
+    kind: z.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: z.number().nonnegative().int(),
+    elapsedTimeInSeconds: z.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    ),
+    ...gameResults || {}
+  })
+]).and(
+  z.object({
+    version: z.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var gameKeyMessage = z.object({
+  kind: z.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+});
+var withKeyEvent = (gameMessageWithoutKeyEvent) => {
+  return z.union([
+    z.discriminatedUnion("kind", [gameKeyMessage]),
+    gameMessageWithoutKeyEvent
+  ]);
+};
+
+// src/card-dash.ts
+var gameParams = z2.object({
+  level: z2.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
 var message = createGameMessage(gameParams, {
-  pairs: z.number().nonnegative().int(),
-  mistakes: z.number().nonnegative().int()
+  pairs: z2.number().nonnegative().int(),
+  mistakes: z2.number().nonnegative().int()
 });
 var game = {
   id: "CIMU_CARD_DASH",
@@ -40,13 +97,13 @@ __export(mathcraft_exports, {
   gameParams: () => gameParams2,
   message: () => message2
 });
-import { z as z2 } from "zod";
-var gameParams2 = z2.object({
-  level: z2.number().nonnegative().int().min(1).max(3).describe("game difficulty")
+import { z as z3 } from "zod";
+var gameParams2 = z3.object({
+  level: z3.number().nonnegative().int().min(1).max(3).describe("game difficulty")
 });
 var message2 = createGameMessage(gameParams2, {
-  mistakes: z2.number().nonnegative().int(),
-  correctAnswers: z2.number().nonnegative().int().describe("The number of questions answered correctly in the game.")
+  mistakes: z3.number().nonnegative().int(),
+  correctAnswers: z3.number().nonnegative().int().describe("The number of questions answered correctly in the game.")
 });
 var game2 = {
   id: "CIMU_MATH_CRAFT",
@@ -67,9 +124,9 @@ __export(matrix_run_exports, {
   gameParams: () => gameParams3,
   message: () => message3
 });
-import { z as z3 } from "zod";
-var gameParams3 = z3.object({
-  level: z3.number().nonnegative().int().min(1).max(2).describe("game difficulty")
+import { z as z4 } from "zod";
+var gameParams3 = z4.object({
+  level: z4.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
 var message3 = withKeyEvent(createGameMessage(gameParams3, {}));
 var game3 = {
@@ -91,45 +148,45 @@ __export(surge_run_exports, {
   gameParams: () => gameParams4,
   message: () => message4
 });
-import { z as z4 } from "zod";
-var gameParams4 = z4.object({
-  bestScores: z4.number().int().min(0).describe("used to display user's personal best score"),
-  device: z4.enum(["mobile", "desktop"])
+import { z as z5 } from "zod";
+var gameParams4 = z5.object({
+  bestScores: z5.number().int().min(0).describe("used to display user's personal best score"),
+  device: z5.enum(["mobile", "desktop"])
 });
-var message4 = z4.discriminatedUnion("kind", [
-  z4.object({
-    kind: z4.literal("[game]:initialized").describe(
+var message4 = z5.discriminatedUnion("kind", [
+  z5.object({
+    kind: z5.literal("[game]:initialized").describe(
       "Should be the first event in the sequence, tells Stream when to send initial params"
     )
   }),
-  z4.object({
-    kind: z4.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+  z5.object({
+    kind: z5.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
   }),
-  z4.object({
-    kind: z4.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: z4.string().uuid("unique userId"),
-    sessionId: z4.string().describe("unique for each game session"),
+  z5.object({
+    kind: z5.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: z5.string().uuid("unique userId"),
+    sessionId: z5.string().describe("unique for each game session"),
     gameParams: gameParams4
   }),
-  z4.object({
-    kind: z4.literal("[game]:is-ready").describe(
+  z5.object({
+    kind: z5.literal("[game]:is-ready").describe(
       "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
     )
   }),
-  z4.object({
-    kind: z4.literal("[host]:start-game").describe(
+  z5.object({
+    kind: z5.literal("[host]:start-game").describe(
       "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
     )
   }),
-  z4.object({
-    kind: z4.literal("[game]:ended").describe(
+  z5.object({
+    kind: z5.literal("[game]:ended").describe(
       "Game time is up or the player finishes early, then this event is sent"
     ),
-    scores: z4.number().nonnegative().int()
+    scores: z5.number().nonnegative().int()
   })
 ]).and(
-  z4.object({
-    version: z4.literal(1).describe(
+  z5.object({
+    version: z5.literal(1).describe(
       "this is to make sure our code knows how to handle if schema updated"
     )
   })
@@ -153,12 +210,12 @@ __export(tumble_fall_exports, {
   gameParams: () => gameParams5,
   message: () => message5
 });
-import { z as z5 } from "zod";
-var gameParams5 = z5.object({
-  level: z5.number().nonnegative().int().min(1).max(2).describe("game difficulty")
+import { z as z6 } from "zod";
+var gameParams5 = z6.object({
+  level: z6.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
 var message5 = createGameMessage(gameParams5, {
-  falls: z5.number().nonnegative().int()
+  falls: z6.number().nonnegative().int()
 });
 var game5 = {
   id: "CIMU_TUMBLE_FALL",
@@ -179,10 +236,10 @@ __export(color_recall_exports, {
   gameParams: () => gameParams6,
   message: () => message6
 });
-import { z as z6 } from "zod";
-var gameParams6 = z6.object({});
+import { z as z7 } from "zod";
+var gameParams6 = z7.object({});
 var message6 = createGameMessage(gameParams6, {
-  rounds: z6.number().nonnegative().int()
+  rounds: z7.number().nonnegative().int()
 });
 var game6 = {
   id: "CIMU_COLOR_RECALL",
@@ -197,7 +254,7 @@ var game6 = {
 };
 
 // src/common.ts
-var thirdPartyExperience = z7.enum([
+var thirdPartyExperience = z8.enum([
   game.id,
   game2.id,
   game3.id,
@@ -206,66 +263,12 @@ var thirdPartyExperience = z7.enum([
   game6.id
   // add more games here
 ]);
-var createGameMessage = (gameParams7, gameResults) => z7.discriminatedUnion("kind", [
-  z7.object({
-    kind: z7.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  z7.object({
-    kind: z7.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: z7.string().uuid("unique userId"),
-    sessionId: z7.string().describe("unique for each game session"),
-    gameDurationInSeconds: z7.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams: gameParams7
-  }),
-  z7.object({
-    kind: z7.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  z7.object({
-    kind: z7.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: z7.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  z7.object({
-    kind: z7.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    scores: z7.number().nonnegative().int(),
-    elapsedTimeInSeconds: z7.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    ),
-    ...gameResults || {}
-  })
-]).and(
-  z7.object({
-    version: z7.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
-  })
-);
-var gameKeyMessage = z7.object({
-  kind: z7.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
-});
-var withKeyEvent = (gameMessageWithoutKeyEvent) => {
-  return z7.union([
-    z7.discriminatedUnion("kind", [gameKeyMessage]),
-    gameMessageWithoutKeyEvent
-  ]);
-};
 export {
   card_dash_exports as cardDash,
   color_recall_exports as colorRecall,
-  createGameMessage,
   mathcraft_exports as mathCraft,
   matrix_run_exports as matrixRun,
   surge_run_exports as surgeRun,
   thirdPartyExperience,
-  tumble_fall_exports as tumbleFall,
-  withKeyEvent
+  tumble_fall_exports as tumbleFall
 };

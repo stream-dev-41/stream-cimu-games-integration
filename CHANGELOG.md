@@ -1,3 +1,12 @@
+## [0.4.19](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.18...v0.4.19) (2024-12-26)
+
+
+### Bug Fixes
+
+* game result required not optional ([066b95b](https://github.com/stream-dev-41/stream-cimu-games-integration/commit/066b95bc2f71986ce06c62a6ba3d67e4e37f5dae))
+
+
+
 ## [0.4.18](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.17...v0.4.18) (2024-12-26)
 
 
