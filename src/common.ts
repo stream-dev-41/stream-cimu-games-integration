@@ -22,7 +22,7 @@ export const createGameMessage = <
   GameResults extends Record<string, z.ZodType>,
 >(
   gameParams: GameParams,
-  gameResults?: GameResults,
+  gameResults: GameResults,
 ) =>
   z
     .discriminatedUnion("kind", [
