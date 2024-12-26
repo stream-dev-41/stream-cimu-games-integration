@@ -2,6 +2,106 @@ import { z } from 'zod';
 
 declare const thirdPartyExperience: z.ZodEnum<["CIMU_CARD_DASH", "CIMU_MATH_CRAFT", "CIMU_MATRIX_RUN", "CIMU_SURGE_RUN", "CIMU_TUMBLE_FALL", "CIMU_COLOR_RECALL"]>;
 type ThirdPartyExperienceEnum = z.infer<typeof thirdPartyExperience>;
+declare const createGameMessage: <GameParams extends z.ZodType, GameResults extends z.ZodType>(gameParams: GameParams, gameSpecificResults: GameResults) => z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+    kind: z.ZodLiteral<"[game]:initialized">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[game]:initialized";
+}, {
+    kind: "[game]:initialized";
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[host]:initial-params">;
+    userId: z.ZodString;
+    sessionId: z.ZodString;
+    gameDurationInSeconds: z.ZodNumber;
+    gameParams: GameParams;
+}, "strip", z.ZodTypeAny, { [k in keyof z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
+    kind: z.ZodLiteral<"[host]:initial-params">;
+    userId: z.ZodString;
+    sessionId: z.ZodString;
+    gameDurationInSeconds: z.ZodNumber;
+    gameParams: GameParams;
+}>, any>]: z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
+    kind: z.ZodLiteral<"[host]:initial-params">;
+    userId: z.ZodString;
+    sessionId: z.ZodString;
+    gameDurationInSeconds: z.ZodNumber;
+    gameParams: GameParams;
+}>, any>[k]; }, { [k_1 in keyof z.baseObjectInputType<{
+    kind: z.ZodLiteral<"[host]:initial-params">;
+    userId: z.ZodString;
+    sessionId: z.ZodString;
+    gameDurationInSeconds: z.ZodNumber;
+    gameParams: GameParams;
+}>]: z.baseObjectInputType<{
+    kind: z.ZodLiteral<"[host]:initial-params">;
+    userId: z.ZodString;
+    sessionId: z.ZodString;
+    gameDurationInSeconds: z.ZodNumber;
+    gameParams: GameParams;
+}>[k_1]; }>, z.ZodObject<{
+    kind: z.ZodLiteral<"[game]:is-ready">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[game]:is-ready";
+}, {
+    kind: "[game]:is-ready";
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[host]:start-game">;
+    timeLeftInSeconds: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    kind: "[host]:start-game";
+    timeLeftInSeconds: number;
+}, {
+    kind: "[host]:start-game";
+    timeLeftInSeconds: number;
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"[game]:ended">;
+    scores: z.ZodNumber;
+    elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: GameResults;
+}, "strip", z.ZodTypeAny, { [k_2 in keyof z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
+    kind: z.ZodLiteral<"[game]:ended">;
+    scores: z.ZodNumber;
+    elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: GameResults;
+}>, any>]: z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
+    kind: z.ZodLiteral<"[game]:ended">;
+    scores: z.ZodNumber;
+    elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: GameResults;
+}>, any>[k_2]; }, { [k_1_1 in keyof z.baseObjectInputType<{
+    kind: z.ZodLiteral<"[game]:ended">;
+    scores: z.ZodNumber;
+    elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: GameResults;
+}>]: z.baseObjectInputType<{
+    kind: z.ZodLiteral<"[game]:ended">;
+    scores: z.ZodNumber;
+    elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: GameResults;
+}>[k_1_1]; }>]>, z.ZodObject<{
+    version: z.ZodLiteral<1>;
+}, "strip", z.ZodTypeAny, {
+    version: 1;
+}, {
+    version: 1;
+}>>;
+declare const withKeyEvent: <T extends z.ZodType>(gameMessageWithoutKeyEvent: T) => z.ZodUnion<[z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+    kind: z.ZodLiteral<"[host]:key">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[host]:key";
+}, {
+    kind: "[host]:key";
+}>]>, T]>;
+type GameConfig<T extends z.ZodType> = {
+    id: string;
+    url: string;
+    name: string;
+    shortDescription: string;
+    message: T;
+    descriptionInHtml: string;
+    launchInstructionInHtml: string;
+    scoringRulesInHtml: string;
+};
 
 declare const gameParams$5: z.ZodObject<{
     level: z.ZodNumber;
@@ -63,21 +163,33 @@ declare const message$5: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[game]:ended">;
     scores: z.ZodNumber;
-    pairs: z.ZodNumber;
-    mistakes: z.ZodNumber;
     elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: z.ZodObject<{
+        pairs: z.ZodNumber;
+        mistakes: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        pairs: number;
+        mistakes: number;
+    }, {
+        pairs: number;
+        mistakes: number;
+    }>;
 }, "strip", z.ZodTypeAny, {
     kind: "[game]:ended";
     scores: number;
-    pairs: number;
-    mistakes: number;
     elapsedTimeInSeconds: number;
+    gameSpecificResults: {
+        pairs: number;
+        mistakes: number;
+    };
 }, {
     kind: "[game]:ended";
     scores: number;
-    pairs: number;
-    mistakes: number;
     elapsedTimeInSeconds: number;
+    gameSpecificResults: {
+        pairs: number;
+        mistakes: number;
+    };
 }>]>, z.ZodObject<{
     version: z.ZodLiteral<1>;
 }, "strip", z.ZodTypeAny, {
@@ -143,21 +255,33 @@ declare const game$5: {
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[game]:ended">;
         scores: z.ZodNumber;
-        pairs: z.ZodNumber;
-        mistakes: z.ZodNumber;
         elapsedTimeInSeconds: z.ZodNumber;
+        gameSpecificResults: z.ZodObject<{
+            pairs: z.ZodNumber;
+            mistakes: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            pairs: number;
+            mistakes: number;
+        }, {
+            pairs: number;
+            mistakes: number;
+        }>;
     }, "strip", z.ZodTypeAny, {
         kind: "[game]:ended";
         scores: number;
-        pairs: number;
-        mistakes: number;
         elapsedTimeInSeconds: number;
+        gameSpecificResults: {
+            pairs: number;
+            mistakes: number;
+        };
     }, {
         kind: "[game]:ended";
         scores: number;
-        pairs: number;
-        mistakes: number;
         elapsedTimeInSeconds: number;
+        gameSpecificResults: {
+            pairs: number;
+            mistakes: number;
+        };
     }>]>, z.ZodObject<{
         version: z.ZodLiteral<1>;
     }, "strip", z.ZodTypeAny, {
@@ -236,21 +360,33 @@ declare const message$4: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[game]:ended">;
     scores: z.ZodNumber;
-    correctAnswers: z.ZodNumber;
-    mistakes: z.ZodNumber;
     elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: z.ZodObject<{
+        mistakes: z.ZodNumber;
+        correctAnswers: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        mistakes: number;
+        correctAnswers: number;
+    }, {
+        mistakes: number;
+        correctAnswers: number;
+    }>;
 }, "strip", z.ZodTypeAny, {
     kind: "[game]:ended";
     scores: number;
-    mistakes: number;
     elapsedTimeInSeconds: number;
-    correctAnswers: number;
+    gameSpecificResults: {
+        mistakes: number;
+        correctAnswers: number;
+    };
 }, {
     kind: "[game]:ended";
     scores: number;
-    mistakes: number;
     elapsedTimeInSeconds: number;
-    correctAnswers: number;
+    gameSpecificResults: {
+        mistakes: number;
+        correctAnswers: number;
+    };
 }>]>, z.ZodObject<{
     version: z.ZodLiteral<1>;
 }, "strip", z.ZodTypeAny, {
@@ -316,21 +452,33 @@ declare const game$4: {
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[game]:ended">;
         scores: z.ZodNumber;
-        correctAnswers: z.ZodNumber;
-        mistakes: z.ZodNumber;
         elapsedTimeInSeconds: z.ZodNumber;
+        gameSpecificResults: z.ZodObject<{
+            mistakes: z.ZodNumber;
+            correctAnswers: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            mistakes: number;
+            correctAnswers: number;
+        }, {
+            mistakes: number;
+            correctAnswers: number;
+        }>;
     }, "strip", z.ZodTypeAny, {
         kind: "[game]:ended";
         scores: number;
-        mistakes: number;
         elapsedTimeInSeconds: number;
-        correctAnswers: number;
+        gameSpecificResults: {
+            mistakes: number;
+            correctAnswers: number;
+        };
     }, {
         kind: "[game]:ended";
         scores: number;
-        mistakes: number;
         elapsedTimeInSeconds: number;
-        correctAnswers: number;
+        gameSpecificResults: {
+            mistakes: number;
+            correctAnswers: number;
+        };
     }>]>, z.ZodObject<{
         version: z.ZodLiteral<1>;
     }, "strip", z.ZodTypeAny, {
@@ -525,18 +673,18 @@ declare const gameParams$2: z.ZodObject<{
     level: number;
 }>;
 type MatrixRunGameParams = z.infer<typeof gameParams$2>;
-declare const message$2: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
-    kind: z.ZodLiteral<"[game]:initialized">;
-}, "strip", z.ZodTypeAny, {
-    kind: "[game]:initialized";
-}, {
-    kind: "[game]:initialized";
-}>, z.ZodObject<{
+declare const message$2: z.ZodUnion<[z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"[host]:key">;
 }, "strip", z.ZodTypeAny, {
     kind: "[host]:key";
 }, {
     kind: "[host]:key";
+}>]>, z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+    kind: z.ZodLiteral<"[game]:initialized">;
+}, "strip", z.ZodTypeAny, {
+    kind: "[game]:initialized";
+}, {
+    kind: "[game]:initialized";
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"[host]:initial-params">;
     userId: z.ZodString;
@@ -584,39 +732,42 @@ declare const message$2: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.Zo
     kind: z.ZodLiteral<"[game]:ended">;
     scores: z.ZodNumber;
     elapsedTimeInSeconds: z.ZodNumber;
+    gameSpecificResults: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
 }, "strip", z.ZodTypeAny, {
     kind: "[game]:ended";
     scores: number;
     elapsedTimeInSeconds: number;
+    gameSpecificResults: {};
 }, {
     kind: "[game]:ended";
     scores: number;
     elapsedTimeInSeconds: number;
+    gameSpecificResults: {};
 }>]>, z.ZodObject<{
     version: z.ZodLiteral<1>;
 }, "strip", z.ZodTypeAny, {
     version: 1;
 }, {
     version: 1;
-}>>;
+}>>]>;
 type MatrixRunMessage = z.infer<typeof message$2>;
 declare const game$2: {
     readonly id: "CIMU_MATRIX_RUN";
     readonly url: "https://stream-run30.342games.com";
     readonly name: "Matrix Run";
     readonly shortDescription: "Run and jump as far as your can";
-    readonly message: z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
-        kind: z.ZodLiteral<"[game]:initialized">;
-    }, "strip", z.ZodTypeAny, {
-        kind: "[game]:initialized";
-    }, {
-        kind: "[game]:initialized";
-    }>, z.ZodObject<{
+    readonly message: z.ZodUnion<[z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
         kind: z.ZodLiteral<"[host]:key">;
     }, "strip", z.ZodTypeAny, {
         kind: "[host]:key";
     }, {
         kind: "[host]:key";
+    }>]>, z.ZodIntersection<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
+        kind: z.ZodLiteral<"[game]:initialized">;
+    }, "strip", z.ZodTypeAny, {
+        kind: "[game]:initialized";
+    }, {
+        kind: "[game]:initialized";
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"[host]:initial-params">;
         userId: z.ZodString;
@@ -664,21 +815,24 @@ declare const game$2: {
         kind: z.ZodLiteral<"[game]:ended">;
         scores: z.ZodNumber;
         elapsedTimeInSeconds: z.ZodNumber;
+        gameSpecificResults: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
     }, "strip", z.ZodTypeAny, {
         kind: "[game]:ended";
         scores: number;
         elapsedTimeInSeconds: number;
+        gameSpecificResults: {};
     }, {
         kind: "[game]:ended";
         scores: number;
         elapsedTimeInSeconds: number;
+        gameSpecificResults: {};
     }>]>, z.ZodObject<{
         version: z.ZodLiteral<1>;
     }, "strip", z.ZodTypeAny, {
         version: 1;
     }, {
         version: 1;
-    }>>;
+    }>>]>;
     readonly descriptionInHtml: "Avoid the obstacles and escape as far as possible in the matrix. The speed increases with distance travelled. ";
     readonly launchInstructionInHtml: "Normal mode: No flying obstacles<br/>Hard mode: Flying obstacles introduced";
     readonly scoringRulesInHtml: "Fans are scored based on the final distance achieved";
@@ -1001,4 +1155,4 @@ declare namespace colorRecall {
   export { type colorRecall_ColorRecallGameParams as ColorRecallGameParams, type colorRecall_ColorRecallMessage as ColorRecallMessage, colorRecall_game as game, colorRecall_gameParams as gameParams, colorRecall_message as message };
 }
 
-export { type CardDashGameParams, type CardDashMessage, type ColorRecallGameParams, type ColorRecallMessage, type MathCraftGameParams, type MathCraftMessage, type MatrixRunGameParams, type MatrixRunMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, type TumbleFallGameParams, type TumbleFallMessage, cardDash, colorRecall, mathcraft as mathCraft, matrixRun, surgeRun, thirdPartyExperience, tumbleFall };
+export { type CardDashGameParams, type CardDashMessage, type ColorRecallGameParams, type ColorRecallMessage, type GameConfig, type MathCraftGameParams, type MathCraftMessage, type MatrixRunGameParams, type MatrixRunMessage, type SurgeRunGameParams, type SurgeRunMessage, type ThirdPartyExperienceEnum, type TumbleFallGameParams, type TumbleFallMessage, cardDash, colorRecall, createGameMessage, mathcraft as mathCraft, matrixRun, surgeRun, thirdPartyExperience, tumbleFall, withKeyEvent };

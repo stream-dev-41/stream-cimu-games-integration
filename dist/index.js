@@ -22,11 +22,13 @@ var src_exports = {};
 __export(src_exports, {
   cardDash: () => card_dash_exports,
   colorRecall: () => color_recall_exports,
+  createGameMessage: () => createGameMessage,
   mathCraft: () => mathcraft_exports,
   matrixRun: () => matrix_run_exports,
   surgeRun: () => surge_run_exports,
   thirdPartyExperience: () => thirdPartyExperience,
-  tumbleFall: () => tumble_fall_exports
+  tumbleFall: () => tumble_fall_exports,
+  withKeyEvent: () => withKeyEvent
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -44,48 +46,11 @@ var import_zod = require("zod");
 var gameParams = import_zod.z.object({
   level: import_zod.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message = import_zod.z.discriminatedUnion("kind", [
+var message = createGameMessage(
+  gameParams,
   import_zod.z.object({
-    kind: import_zod.z.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  import_zod.z.object({
-    kind: import_zod.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: import_zod.z.string().uuid("unique userId"),
-    sessionId: import_zod.z.string().describe("unique for each game session"),
-    gameDurationInSeconds: import_zod.z.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams
-  }),
-  import_zod.z.object({
-    kind: import_zod.z.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  import_zod.z.object({
-    kind: import_zod.z.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: import_zod.z.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  import_zod.z.object({
-    kind: import_zod.z.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    scores: import_zod.z.number().nonnegative().int(),
     pairs: import_zod.z.number().nonnegative().int(),
-    mistakes: import_zod.z.number().nonnegative().int(),
-    elapsedTimeInSeconds: import_zod.z.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
-  })
-]).and(
-  import_zod.z.object({
-    version: import_zod.z.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
+    mistakes: import_zod.z.number().nonnegative().int()
   })
 );
 var game = {
@@ -94,7 +59,6 @@ var game = {
   name: "Card Dash",
   shortDescription: "Match the pairs as fast as you can",
   message,
-  // will be sanitized
   descriptionInHtml: "A 3x4 board of cards will be displayed face down. Fans will have to memorize and try their best to match the hidden pairs on the board as fast as possible before the time runs out.",
   launchInstructionInHtml: "Normal mode: Each pair is accompanied with a distinct background color to aid with visual memory<br/>Hard mode: Each pair has the same background color, making it more challenging for fans",
   scoringRulesInHtml: "Fans are scored based on speed and accuracy. They get 250 Base Points for passing and 500 Bonus for making into Top 100."
@@ -111,48 +75,11 @@ var import_zod2 = require("zod");
 var gameParams2 = import_zod2.z.object({
   level: import_zod2.z.number().nonnegative().int().min(1).max(3).describe("game difficulty")
 });
-var message2 = import_zod2.z.discriminatedUnion("kind", [
+var message2 = createGameMessage(
+  gameParams2,
   import_zod2.z.object({
-    kind: import_zod2.z.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  import_zod2.z.object({
-    kind: import_zod2.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: import_zod2.z.string().uuid("unique userId"),
-    sessionId: import_zod2.z.string().describe("unique for each game session"),
-    gameDurationInSeconds: import_zod2.z.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams: gameParams2
-  }),
-  import_zod2.z.object({
-    kind: import_zod2.z.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  import_zod2.z.object({
-    kind: import_zod2.z.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: import_zod2.z.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  import_zod2.z.object({
-    kind: import_zod2.z.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    scores: import_zod2.z.number().nonnegative().int(),
-    correctAnswers: import_zod2.z.number().nonnegative().int().describe("The number of questions answered correctly in the game."),
     mistakes: import_zod2.z.number().nonnegative().int(),
-    elapsedTimeInSeconds: import_zod2.z.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
-  })
-]).and(
-  import_zod2.z.object({
-    version: import_zod2.z.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
+    correctAnswers: import_zod2.z.number().nonnegative().int().describe("The number of questions answered correctly in the game.")
   })
 );
 var game2 = {
@@ -178,50 +105,8 @@ var import_zod3 = require("zod");
 var gameParams3 = import_zod3.z.object({
   level: import_zod3.z.number().nonnegative().int().min(1).max(2).describe("game difficulty")
 });
-var message3 = import_zod3.z.discriminatedUnion("kind", [
-  import_zod3.z.object({
-    kind: import_zod3.z.literal("[game]:initialized").describe(
-      "Should be the first event in the sequence, tells Stream when to send initial params"
-    )
-  }),
-  import_zod3.z.object({
-    kind: import_zod3.z.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
-  }),
-  import_zod3.z.object({
-    kind: import_zod3.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
-    userId: import_zod3.z.string().uuid("unique userId"),
-    sessionId: import_zod3.z.string().describe("unique for each game session"),
-    gameDurationInSeconds: import_zod3.z.number().nonnegative().int().describe("the duration of the game in seconds"),
-    gameParams: gameParams3
-  }),
-  import_zod3.z.object({
-    kind: import_zod3.z.literal("[game]:is-ready").describe(
-      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
-    )
-  }),
-  import_zod3.z.object({
-    kind: import_zod3.z.literal("[host]:start-game").describe(
-      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
-    ),
-    timeLeftInSeconds: import_zod3.z.number().nonnegative().int().describe(
-      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
-    )
-  }),
-  import_zod3.z.object({
-    kind: import_zod3.z.literal("[game]:ended").describe(
-      "Game time is up or the player finishes early, then this event is sent"
-    ),
-    scores: import_zod3.z.number().nonnegative().int(),
-    elapsedTimeInSeconds: import_zod3.z.number().nonnegative().int().describe(
-      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
-    )
-  })
-]).and(
-  import_zod3.z.object({
-    version: import_zod3.z.literal(1).describe(
-      "this is to make sure our code knows how to handle if schema updated"
-    )
-  })
+var message3 = withKeyEvent(
+  createGameMessage(gameParams3, import_zod3.z.object({}))
 );
 var game3 = {
   id: "CIMU_MATRIX_RUN",
@@ -437,13 +322,67 @@ var thirdPartyExperience = import_zod7.z.enum([
   game6.id
   // add more games here
 ]);
+var createGameMessage = (gameParams7, gameSpecificResults) => import_zod7.z.discriminatedUnion("kind", [
+  import_zod7.z.object({
+    kind: import_zod7.z.literal("[game]:initialized").describe(
+      "Should be the first event in the sequence, tells Stream when to send initial params"
+    )
+  }),
+  import_zod7.z.object({
+    kind: import_zod7.z.literal("[host]:initial-params").describe("Setup game with game params, after initialised"),
+    userId: import_zod7.z.string().uuid("unique userId"),
+    sessionId: import_zod7.z.string().describe("unique for each game session"),
+    gameDurationInSeconds: import_zod7.z.number().nonnegative().int().describe("the duration of the game in seconds"),
+    gameParams: gameParams7
+  }),
+  import_zod7.z.object({
+    kind: import_zod7.z.literal("[game]:is-ready").describe(
+      "Sent after the game has been fully setup include loading asset/logic/etc...In other words, ready to play"
+    )
+  }),
+  import_zod7.z.object({
+    kind: import_zod7.z.literal("[host]:start-game").describe(
+      "Start the game immediately, there should be no delay time after this event is sent to let the players play the game"
+    ),
+    timeLeftInSeconds: import_zod7.z.number().nonnegative().int().describe(
+      "how many seconds left before the game will end, should be 0 <= timeLeft <= gameDurationInSeconds"
+    )
+  }),
+  import_zod7.z.object({
+    kind: import_zod7.z.literal("[game]:ended").describe(
+      "Game time is up or the player finishes early, then this event is sent"
+    ),
+    scores: import_zod7.z.number().nonnegative().int(),
+    elapsedTimeInSeconds: import_zod7.z.number().nonnegative().int().describe(
+      "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft"
+    ),
+    gameSpecificResults
+  })
+]).and(
+  import_zod7.z.object({
+    version: import_zod7.z.literal(1).describe(
+      "this is to make sure our code knows how to handle if schema updated"
+    )
+  })
+);
+var gameKeyMessage = import_zod7.z.object({
+  kind: import_zod7.z.literal("[host]:key").describe("Send key event to the game, e.g. keyboard or controller")
+});
+var withKeyEvent = (gameMessageWithoutKeyEvent) => {
+  return import_zod7.z.union([
+    import_zod7.z.discriminatedUnion("kind", [gameKeyMessage]),
+    gameMessageWithoutKeyEvent
+  ]);
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   cardDash,
   colorRecall,
+  createGameMessage,
   mathCraft,
   matrixRun,
   surgeRun,
   thirdPartyExperience,
-  tumbleFall
+  tumbleFall,
+  withKeyEvent
 });

@@ -1,3 +1,7 @@
+## [0.4.16](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.15...v0.4.16) (2024-12-26)
+
+
+
 ## [0.4.15](https://github.com/stream-dev-41/stream-cimu-games-integration/compare/v0.4.14...v0.4.15) (2024-12-12)
 
 
