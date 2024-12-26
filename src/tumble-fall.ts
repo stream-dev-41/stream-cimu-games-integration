@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createGameMessage, GameConfig } from "./common";
+import { createGameMessage, GameConfig } from "./util";
 
 export const gameParams = z.object({
   level: z
