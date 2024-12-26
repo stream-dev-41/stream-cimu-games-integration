@@ -19,10 +19,10 @@ export type ThirdPartyExperienceEnum = z.infer<typeof thirdPartyExperience>;
 
 export const createGameMessage = <
   GameParams extends z.ZodType,
-  GameResults extends z.ZodType,
+  GameResults extends Record<string, z.ZodType>,
 >(
   gameParams: GameParams,
-  gameSpecificResults: GameResults,
+  gameResults?: GameResults,
 ) =>
   z
     .discriminatedUnion("kind", [
@@ -81,7 +81,7 @@ export const createGameMessage = <
           .describe(
             "Number of seconds elapsed since player stared the game until end or player finished it, should be 0 <= elapsed <= timeLeft",
           ),
-        gameSpecificResults,
+        ...(gameResults || {}),
       }),
     ])
     .and(

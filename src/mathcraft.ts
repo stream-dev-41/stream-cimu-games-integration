@@ -12,18 +12,14 @@ export const gameParams = z.object({
 });
 export type MathCraftGameParams = z.infer<typeof gameParams>;
 
-export const message = createGameMessage(
-  gameParams,
-  z.object({
-    mistakes: z.number().nonnegative().int(),
-    correctAnswers: z
-      .number()
-      .nonnegative()
-      .int()
-      .describe("The number of questions answered correctly in the game."),
-  }),
-);
-
+export const message = createGameMessage(gameParams, {
+  mistakes: z.number().nonnegative().int(),
+  correctAnswers: z
+    .number()
+    .nonnegative()
+    .int()
+    .describe("The number of questions answered correctly in the game."),
+});
 export type MathCraftMessage = z.infer<typeof message>;
 
 export const game = {

@@ -12,13 +12,10 @@ export const gameParams = z.object({
 });
 export type CardDashGameParams = z.infer<typeof gameParams>;
 
-export const message = createGameMessage(
-  gameParams,
-  z.object({
-    pairs: z.number().nonnegative().int(),
-    mistakes: z.number().nonnegative().int(),
-  }),
-);
+export const message = createGameMessage(gameParams, {
+  pairs: z.number().nonnegative().int(),
+  mistakes: z.number().nonnegative().int(),
+});
 export type CardDashMessage = z.infer<typeof message>;
 
 export const game = {

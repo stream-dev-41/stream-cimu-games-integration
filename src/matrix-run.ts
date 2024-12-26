@@ -12,9 +12,7 @@ export const gameParams = z.object({
 });
 export type MatrixRunGameParams = z.infer<typeof gameParams>;
 
-export const message = withKeyEvent(
-  createGameMessage(gameParams, z.object({})),
-);
+export const message = withKeyEvent(createGameMessage(gameParams));
 export type MatrixRunMessage = z.infer<typeof message>;
 
 export const game = {
